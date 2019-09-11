@@ -1,0 +1,259 @@
+﻿
+@{
+    ViewBag.Title = "ViewEmployee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <div class="m-content">
+        <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            View Employee Detail
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                    <div class="row align-items-rigth">
+                        <div class="col-xl-6 order-2 order-xl-2 m--align-right">
+                            <a href="@Url.Content("~/EmployeeMaster/AddEmployee")" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                <span>
+                                    <i class="fa fa-user-plus"></i>
+                                    <span>Add Employee</span>
+                                </span>
+                            </a>
+                            <div class="m-separator m-separator--dashed d-xl-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                <!--begin: Datatable -->
+                <table class="table table-striped- table-tracker table-hover" id="tblEmployee"></table>
+                <!--end: Datatable -->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    var Table;
+    $(document).ready(function () {
+
+        Table = $('#tblEmployee').DataTable({
+            "serverSide": true,
+            "processing": true,
+            "orderMulti": false,
+            "filter": true,
+            "sAjaxSource": "/EmployeeMaster/GetEmployeeDetail",
+            //"iDisplayLength": 10,
+            "ordering": true,
+            "scrollX": true,
+            "responsive": true,
+            "language": {
+                "infoFiltered": ""
+            },
+            //"bSort": true,
+            //"aaSorting": [[1, 'asc'], [2, 'asc'], [3, 'asc']],
+            "columnDefs": [
+                { "orderable": false, "targets": 0 },
+                { "orderable": false, "targets": 4 },
+            ],
+
+            "fnServerData": function (sSource, data, fnCallback) {
+                data.push({ name: "Status", value: false });
+
+                $.ajax({
+                    "dataType": "json",
+                    "type": "POST",
+                    "url": sSource,
+                    "data": data,
+                    "success": fnCallback
+                });
+            },
+
+            "aoColumns": [
+                {
+                    "sTitle": "Action", "className": "action", "orderable": false, render: function (data, type, row, meta) {
+                        var srt
+                        srt = "<a href='/EmployeeMaster/EditEmployee/" + row.EmployeeID + "' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Edit Employee Detail'><i class='fa fa-pen'></i></a>"
+                        //if (row.statusId != 2)
+                        //    srt += "&nbsp;<a href='javascript:;' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Confirm Booking' onclick='ApproveBooking\(" + row.eventBookingId + ")'\><i class='fa fa-check'></i></a>"
+                        //if (row.statusId != 3)
+                        //    srt += "&nbsp;<a href='javascript:;' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-danger m-btn--icon' title='Reject Booking' onclick='RejectBooking\(" + row.eventBookingId + ")'\><i class='fa fa-times'></i></a>"
+
+                        return srt;
+                    }
+                },
+                {
+                    "sTitle": "Name", "className": "", render: function (data, type, row, meta) {
+                        var name = "<strong style='text-transform: capitalize;'>" + row.Name + "</strong>";
+                        return name
+                    },
+                },
+                {
+                    "sTitle": "Contact No", "className": "", render: function (data, type, row, meta) {
+                        var name = "<strong style='text-transform: capitalize;'>" + row.MobileNo + "</strong>";
+                        return name
+                    }
+                },
+                {
+                    "sTitle": "Email-Id", "className": "", render: function (data, type, row, meta) {
+                        return row.EmailId
+                    }
+                },
+                {
+                    "sTitle": "City", "className": "", render: function (data, type, row, meta) {
+                        return row.City
+                    }
+                },
+                {
+                    "sTitle": "State", "className": "", render: function (data, type, row, meta) {
+                        return row.State
+                    }
+                },
+                {
+                    "sTitle": "Daily Wages", "className": "", render: function (data, type, row, meta) {
+                        return row.DailyWages
+                    }
+                },
+                {
+                    "sTitle": "Monthly Wages", "className": "", render: function (data, type, row, meta) {
+                        return row.MonthlyWages
+                    }
+                },
+                {
+                    "sTitle": "Created Date", "className": "", render: function (data, type, row, meta) {
+                        return row.cdate
+                    }
+                },
+                {
+                    "sTitle": "Status", "className": "", render: function (data, type, row, meta) {
+                        if (row.Status == 1) {
+                            return '<span class="m-badge m-badge--info m-badge--wide">Pending</span>'
+                        } else if (row.Status == 2) {
+                            return '<span class="m-badge m-badge--info m-badge--wide">Confirmed</span>'
+                        } else if (row.Status == 3) {
+                            return '<span class="m-badge m-badge--info m-badge--wide">Rejected</span>'
+                        }
+                        return row.txtWorkerType
+                    }
+                }
+            ],
+            "initComplete": function () {
+
+            }
+
+        });
+
+    });
+
+    function RejectBooking(id) {
+        swal({
+            title: "Are you sure?",
+            text: "You are sure want to Reject Booking!",
+            type: "info",
+            allowOutsideClick: "true",
+            showConfirmButton: "Yes",
+            showCancelButton: "No",
+            closeOnConfirm: "true",
+            closeOnCancel: "true"
+        }).then(function (e) {
+            if (e.value == true) {
+                $.ajax({
+                    type: 'Get',
+                    async: false,
+                    url: "/EventBooking/RejectBooking",
+                    data: { Id: id },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        if (result == true) {
+                            toastr.success("Booking Rejected Successfully");
+                            Table.ajax.reload();
+                        }
+                        else {
+                            toastr.error("something went wrong try again later.")
+                        }
+                    },
+                    error: function (e) {
+                        toastr.error('Error', "something went wrong try again later.");
+                    }
+                });
+            }
+        });
+    }
+    function ApproveBooking(id) {
+        swal({
+            title: "Are you sure?",
+            text: "You are sure want to Approve Booking!",
+            type: "info",
+            allowOutsideClick: "true",
+            showConfirmButton: "Yes",
+            showCancelButton: "No",
+            closeOnConfirm: "true",
+            closeOnCancel: "true"
+        }).then(function (e) {
+            if (e.value == true) {
+                $.ajax({
+                    type: 'Get',
+                    async: false,
+                    url: "/EventBooking/ApproveBooking",
+                    data: { Id: id },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        if (result == true) {
+                            toastr.success("Booking Approved Successfully");
+                            Table.ajax.reload();
+                        }
+                        else {
+                            toastr.error("something went wrong try again later.")
+                        }
+                    },
+                    error: function (e) {
+                        toastr.error('Error', "something went wrong try again later.");
+                    }
+                });
+            }
+        });
+    }
+    function DeleteEvent(id) {
+        swal({
+            title: "Are you sure?",
+            text: "You are sure won't be Delete this Event!",
+            type: "info",
+            allowOutsideClick: "true",
+            showConfirmButton: "Yes",
+            showCancelButton: "No",
+            closeOnConfirm: "true",
+            closeOnCancel: "true"
+        }).then(function (e) {
+            if (e.value == true) {
+                $.ajax({
+                    type: 'Get',
+                    async: false,
+                    url: "/Event/DeleteEvent",
+                    data: { Id: id },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        if (result == true) {
+                            toastr.success("Event Deleted Successfully");
+                            Table.ajax.reload();
+                        }
+                        else {
+                            toastr.error("something went wrong try again later.")
+                        }
+                    },
+                    error: function (e) {
+                        toastr.error('Error', "something went wrong try again later.");
+                    }
+                });
+            }
+        });
+    }
+
+</script>
+
+
