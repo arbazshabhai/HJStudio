@@ -1,43 +1,46 @@
 ﻿
 @{
-    ViewBag.Title = "ViewEmployee";
+    ViewBag.Title = "Employee List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
     <div class="m-content">
-        <div class="m-portlet m-portlet--mobile">
-            <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                    <div class="m-portlet__head-title">
-                        <h3 class="m-portlet__head-text">
-                            View Employee Detail
-                        </h3>
-                    </div>
-                </div>
-                <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
-                    <div class="row align-items-rigth">
-                        <div class="col-xl-6 order-2 order-xl-2 m--align-right">
-                            <a href="@Url.Content("~/EmployeeMaster/AddEmployee")" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-                                <span>
-                                    <i class="fa fa-user-plus"></i>
-                                    <span>Add Employee</span>
+        <div class="row">
+            <div class="col-md-12">
+                <!--begin::Portlet-->
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
                                 </span>
-                            </a>
-                            <div class="m-separator m-separator--dashed d-xl-none"></div>
+                                <h3 class="m-portlet__head-text">
+                                    @ViewBag.Title
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+                            @Html.ActionLink("Add", "Add", new { controller = "Employee" }, new { @class = "btn btn-primary" })
                         </div>
                     </div>
+
+                    <!--begin::Form-->
+                    <div class="m-portlet__body">
+                        <!--begin: Datatable -->
+                        <table class="table table-striped- table-tracker table-hover" id="tblEmployee"></table>
+                        <!--end: Datatable -->
+                    </div>
+                    <!--end::Form-->
                 </div>
-            </div>
-            <div class="m-portlet__body">
-                <!--begin: Datatable -->
-                <table class="table table-striped- table-tracker table-hover" id="tblEmployee"></table>
-                <!--end: Datatable -->
+
+                <!--end::Portlet-->
+
             </div>
         </div>
+        
 
     </div>
-</div>
 
 <script>
     var Table;
@@ -48,7 +51,7 @@
             "processing": true,
             "orderMulti": false,
             "filter": true,
-            "sAjaxSource": "/EmployeeMaster/GetEmployeeDetail",
+            "sAjaxSource": "/Employee/GetEmployeeDetail",
             //"iDisplayLength": 10,
             "ordering": true,
             "scrollX": true,
@@ -79,7 +82,7 @@
                 {
                     "sTitle": "Action", "className": "action", "orderable": false, render: function (data, type, row, meta) {
                         var srt
-                        srt = "<a href='/EmployeeMaster/EditEmployee/" + row.EmployeeID + "' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Edit Employee Detail'><i class='fa fa-pen'></i></a>"
+                        srt = "<a href='/Employee/Edit/" + row.EmployeeID + "' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Edit Employee Detail'><i class='fa fa-pen'></i></a>"
                         //if (row.statusId != 2)
                         //    srt += "&nbsp;<a href='javascript:;' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Confirm Booking' onclick='ApproveBooking\(" + row.eventBookingId + ")'\><i class='fa fa-check'></i></a>"
                         //if (row.statusId != 3)

@@ -7,7 +7,7 @@ using System.Web;
 
 namespace HJStudio.Service
 {
-    public class EmployeeMasterService
+    public class EmployeeService
     {
         public static bool AddEmployee(EmployeeModel model)
         {

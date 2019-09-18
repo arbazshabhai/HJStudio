@@ -1,13 +1,44 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace HJStudio.Models
 {
     public class CommanModel
     {
+        public static LogedUserDetails LoginUserDetails
+        {
+            get
+            {
+
+                if (HttpContext.Current.Request.IsAuthenticated)
+                {
+                    var authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+                    if (authCookie != null)
+                    {
+                        var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                        string data = authTicket.UserData;
+                        // data is empty !!!
+                        return JsonConvert.DeserializeObject<LogedUserDetails>(data);
+                    }
+                    else
+                    {
+                        HttpContext.Current.Response.Redirect("/Login/Index");
+                        return null;
+                    }
+                }
+                else
+                {
+                    HttpContext.Current.Response.Redirect("/Login/Index");
+                    return null;
+                }
+            }
+        }
+
         public static string GetEnumDisplayName<T>(T value) where T : struct
         {
             // Get the MemberInfo object for supplied enum value

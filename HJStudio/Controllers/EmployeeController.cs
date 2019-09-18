@@ -9,15 +9,34 @@ using HJStudio.Service;
 
 namespace HJStudio.Controllers
 {
-    public class EmployeeMasterController : Controller
+    [Authorize]
+    public class EmployeeController : Controller
     {
-        // GET: EmployeeMaster
+        // GET: Employee
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult AddEmployee()
+        [HttpPost]
+        public ActionResult GetEmployeeDetail(jQueryDataTableParamModel parm)
+        {
+            int startIndex = parm.iDisplayStart;
+            int endIndex = parm.iDisplayStart + parm.iDisplayLength;
+            int recordsTotal = 0;
+
+            List<EmployeeModel> list = EmployeeService.LoadEmpDetail(parm.sSearch, startIndex, endIndex, parm.iSortCol_0, parm.sSortDir_0, out recordsTotal);
+
+            return Json(new
+            {
+                Echo = parm.sEcho,
+                iTotalRecord = recordsTotal,
+                iTotalDisplayRecords = recordsTotal,
+                data = list
+            });
+        }
+
+        public ActionResult Add()
         {
             EmployeeModel model = new EmployeeModel();
             if (model.ActionType == "")
@@ -31,67 +50,45 @@ namespace HJStudio.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEmps(EmployeeModel model)
+        public ActionResult AddEdit(EmployeeModel model)
         {
             //model.AddedBy = HttpContext.Session.GetString("UserName");
-            bool EmployeeStatus = EmployeeMasterService.AddEmployee(model);
+            bool EmployeeStatus = EmployeeService.AddEmployee(model);
 
             if (EmployeeStatus)
                 TempData["Success"] = "Employee Added Successfully.";
             else
                 TempData["Error"] = "Error, Please Try Again.";
 
-            return RedirectToAction("ViewEmployee");
+            return RedirectToAction("Index");
         }
 
-        public ActionResult EditEmployee(int id)
+        public ActionResult Edit(int id)
         {
             EmployeeModel model = new EmployeeModel();
             model.ActionType = "Update";
-            model = EmployeeMasterService.getEventbyId(id);
+            model = EmployeeService.getEventbyId(id);
             var UserList = (from UserType e in Enum.GetValues(typeof(UserType)) select new { Id = (int)e, Name = CommanModel.GetEnumDisplayName(e) });
             ViewBag.Userlist = new SelectList(UserList, "Id", "Name");           
-            return View("AddEmployee", model);
+            return View("Add", model);
         }
-
-        public ActionResult ViewEmployee()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult GetEmployeeDetail(jQueryDataTableParamModel parm)
-        {
-            int startIndex = parm.iDisplayStart;
-            int endIndex = parm.iDisplayStart + parm.iDisplayLength;
-            int recordsTotal = 0;
-
-            List<EmployeeModel> list = EmployeeMasterService.LoadEmpDetail(parm.sSearch, startIndex, endIndex, parm.iSortCol_0, parm.sSortDir_0, out recordsTotal);
-
-            return Json(new
-            {
-                Echo = parm.sEcho,
-                iTotalRecord = recordsTotal,
-                iTotalDisplayRecords = recordsTotal,
-                data = list
-            });
-        }
+        
 
         public ActionResult DeActiveEvent(int Id)
         {
-            bool Status = EmployeeMasterService.DeActivateEmployee(Id);
+            bool Status = EmployeeService.DeActivateEmployee(Id);
 
             return Json(Status);
         }
         public ActionResult ActiveEvent(int Id)
         {
-            bool Status = EmployeeMasterService.ActivatetEmployee(Id);
+            bool Status = EmployeeService.ActivatetEmployee(Id);
 
             return Json(Status);
         }
         public ActionResult DeleteEvent(int Id)
         {
-            bool Status = EmployeeMasterService.DeleteEmployee(Id);
+            bool Status = EmployeeService.DeleteEmployee(Id);
 
             return Json(Status);
         }
