@@ -32,6 +32,19 @@ namespace HJStudio
                       "~/Content/StyleSheet/vendors.bundle.css",
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/assets/vendors/base/vendorsJs").Include(
+                     "~/assets/vendors/base/vendors.bundle.js",
+                     "~/assets/demo/demo6/base/scripts.bundle.js",
+                      "~/assets/vendors/custom/datatables/datatables.bundle.js"
+                      ));
+
+            bundles.Add(new StyleBundle("~/assets/vendors/base/vendorsCss").Include(
+                      "~/assets/vendors/base/vendors.bundle.css",
+                      "~/assets/demo/demo6/base/style.bundle.css",
+                      "~/assets/vendors/custom/datatables/datatables.bundle.css",
+                      "~/Content/site.css"));
+
         }
     }
 }

@@ -230,6 +230,46 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\bg-1.jpg" />
+    <Content Include="assets\demo\demo6\base\scripts.bundle.js" />
+    <Content Include="assets\demo\demo6\base\style.bundle.css" />
+    <Content Include="assets\demo\demo6\base\style.bundle.rtl.css" />
+    <Content Include="assets\vendors\base\fonts\flaticon\Flaticon.svg" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-brands-400.svg" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-regular-400.svg" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-solid-900.svg" />
+    <Content Include="assets\vendors\base\fonts\line-awesome\line-awesome.svg" />
+    <Content Include="assets\vendors\base\fonts\metronic\Metronic_fda1334c35d0f5fe2afb3afebbb6774a.svg" />
+    <Content Include="assets\vendors\base\fonts\socicon\socicon.svg" />
+    <Content Include="assets\vendors\base\images\ion-rangeslider\sprite-skin-flat.png" />
+    <Content Include="assets\vendors\base\images\jstree\32px.png" />
+    <Content Include="assets\vendors\base\images\jstree\40px.png" />
+    <Content Include="assets\vendors\base\images\jstree\throbber.gif" />
+    <Content Include="assets\vendors\base\images\owl.carousel\ajax-loader.gif" />
+    <Content Include="assets\vendors\base\images\owl.carousel\owl.video.play.png" />
+    <Content Include="assets\vendors\base\vendors.bundle.css" />
+    <Content Include="assets\vendors\base\vendors.bundle.js" />
+    <Content Include="assets\vendors\base\vendors.bundle.rtl.css" />
+    <Content Include="assets\vendors\custom\datatables\datatables.bundle.css" />
+    <Content Include="assets\vendors\custom\datatables\datatables.bundle.js" />
+    <Content Include="assets\vendors\custom\datatables\datatables.bundle.rtl.css" />
+    <Content Include="assets\vendors\custom\flot\flot.bundle.js" />
+    <Content Include="assets\vendors\custom\fullcalendar\fullcalendar.bundle.css" />
+    <Content Include="assets\vendors\custom\fullcalendar\fullcalendar.bundle.js" />
+    <Content Include="assets\vendors\custom\fullcalendar\fullcalendar.bundle.rtl.css" />
+    <Content Include="assets\vendors\custom\gmaps\gmaps.js" />
+    <Content Include="assets\vendors\custom\jquery-ui\images\ui-icons_444444_256x240.png" />
+    <Content Include="assets\vendors\custom\jquery-ui\images\ui-icons_555555_256x240.png" />
+    <Content Include="assets\vendors\custom\jquery-ui\images\ui-icons_777620_256x240.png" />
+    <Content Include="assets\vendors\custom\jquery-ui\images\ui-icons_777777_256x240.png" />
+    <Content Include="assets\vendors\custom\jquery-ui\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="assets\vendors\custom\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="assets\vendors\custom\jquery-ui\jquery-ui.bundle.css" />
+    <Content Include="assets\vendors\custom\jquery-ui\jquery-ui.bundle.js" />
+    <Content Include="assets\vendors\custom\jquery-ui\jquery-ui.bundle.rtl.css" />
+    <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.css" />
+    <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.js" />
+    <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.rtl.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -306,6 +346,35 @@
     <Content Include="Data\HJStudioData.edmx.diagram">
       <DependentUpon>HJStudioData.edmx</DependentUpon>
     </Content>
+    <Content Include="assets\vendors\base\fonts\flaticon\Flaticon.eot" />
+    <Content Include="assets\vendors\base\fonts\flaticon\Flaticon.ttf" />
+    <Content Include="assets\vendors\base\fonts\flaticon\Flaticon.woff" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-brands-400.eot" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-brands-400.ttf" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-brands-400.woff" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-brands-400.woff2" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-regular-400.eot" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-regular-400.ttf" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-regular-400.woff" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-regular-400.woff2" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-solid-900.eot" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-solid-900.ttf" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-solid-900.woff" />
+    <Content Include="assets\vendors\base\fonts\fontawesome5\fa-solid-900.woff2" />
+    <Content Include="assets\vendors\base\fonts\line-awesome\line-awesome.eot" />
+    <Content Include="assets\vendors\base\fonts\line-awesome\line-awesome.ttf" />
+    <Content Include="assets\vendors\base\fonts\line-awesome\line-awesome.woff" />
+    <Content Include="assets\vendors\base\fonts\line-awesome\line-awesome.woff2" />
+    <Content Include="assets\vendors\base\fonts\metronic\Metronic_fda1334c35d0f5fe2afb3afebbb6774a.eot" />
+    <Content Include="assets\vendors\base\fonts\metronic\Metronic_fda1334c35d0f5fe2afb3afebbb6774a.ttf" />
+    <Content Include="assets\vendors\base\fonts\metronic\Metronic_fda1334c35d0f5fe2afb3afebbb6774a.woff" />
+    <Content Include="assets\vendors\base\fonts\metronic\Metronic_fda1334c35d0f5fe2afb3afebbb6774a.woff2" />
+    <Content Include="assets\vendors\base\fonts\socicon\socicon.eot" />
+    <Content Include="assets\vendors\base\fonts\socicon\socicon.ttf" />
+    <Content Include="assets\vendors\base\fonts\socicon\socicon.woff" />
+    <Content Include="assets\vendors\base\fonts\summernote\summernote.eot" />
+    <Content Include="assets\vendors\base\fonts\summernote\summernote.ttf" />
+    <Content Include="assets\vendors\base\fonts\summernote\summernote.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -317,6 +386,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Employee\Add.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -332,7 +402,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
-    <Content Include="Views\Employee\Add.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
