@@ -1,0 +1,123 @@
+﻿@model HJStudio.Models.QuotationModel
+
+@if (Model != null && Model.QuotationDayList != null && Model.QuotationDayList.Count() > 0)
+{
+    for (int i = 0; i < Model.QuotationDayList.Count(); i++)
+    {
+        if (Model.QuotationDayList[i].IsDelete == false)
+        {
+        <div class="DivEventDays" id="DivEventDays_@i">
+            <div class="form-group m-form__group row text-center">
+                <h5 class="m-form__heading-title text-center">Day @(i + 1)</h5>
+                @Html.HiddenFor(x => x.QuotationDayList[i].QuotationDaysID)
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-md-1 col-form-label">Event Name :</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.QuotationDayList[i].EventName, new { @class = "form-control m-input" })
+                    @Html.ValidationMessageFor(x => x.QuotationDayList[i].EventName, "", new { @class = "text-danger" })
+                </div>
+
+                <label class="col-md-1 col-form-label">Event Date :</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.QuotationDayList[i].EventDate, "{0:dd/MM/yyyy}", new { @class = "form-control m-input" })
+                    @Html.ValidationMessageFor(x => x.QuotationDayList[i].EventDate, "", new { @class = "text-danger" })
+                </div>
+                <label class="col-md-1 col-form-label">Event Date :</label>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(x => x.QuotationDayList[i].Daytype, new List<SelectListItem> { new SelectListItem { Text = "Full Day" }, new SelectListItem { Text = "Half Day" } }, new { @class = "form-control m-input" })
+                    @Html.ValidationMessageFor(x => x.QuotationDayList[i].Daytype, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-md-1 col-form-label">Start Time :</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.QuotationDayList[i].StartTime, new { @class = "form-control m-input" })
+                    @Html.ValidationMessageFor(x => x.QuotationDayList[i].StartTime, "", new { @class = "text-danger" })
+                </div>
+
+                <label class="col-md-1 col-form-label">End Time :</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.QuotationDayList[i].EndTime, new { @class = "form-control m-input" })
+                    @Html.ValidationMessageFor(x => x.QuotationDayList[i].EndTime, "", new { @class = "text-danger" })
+                </div>
+                <label class="col-md-1 col-form-label">Remarks :</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.QuotationDayList[i].Remarks, new { @class = "form-control m-input" })
+                    @Html.ValidationMessageFor(x => x.QuotationDayList[i].Remarks, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-md-1 col-form-label">Same as Above :</label>
+                <div class="col-md-3">
+                    @Html.CheckBoxFor(x => x.QuotationDayList[i].SameasAbove, new { @class = "form-control m-input" })
+                    @Html.ValidationMessageFor(x => x.QuotationDayList[i].SameasAbove, "", new { @class = "text-danger" })
+                </div>
+
+                <label class="col-md-1 col-form-label">Address1 :</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.QuotationDayList[i].Address1, new { @class = "form-control m-input" })
+                    @Html.ValidationMessageFor(x => x.QuotationDayList[i].Address1, "", new { @class = "text-danger" })
+                </div>
+                <label class="col-md-1 col-form-label">Address2 :</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.QuotationDayList[i].Address2, new { @class = "form-control m-input" })
+                    @Html.ValidationMessageFor(x => x.QuotationDayList[i].Address2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-md-1 col-form-label">City :</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.QuotationDayList[i].City, new { @class = "form-control m-input" })
+                    @Html.ValidationMessageFor(x => x.QuotationDayList[i].City, "", new { @class = "text-danger" })
+                </div>
+
+                <label class="col-md-1 col-form-label">State :</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.QuotationDayList[i].State, new { @class = "form-control m-input" })
+                    @Html.ValidationMessageFor(x => x.QuotationDayList[i].State, "", new { @class = "text-danger" })
+                </div>
+                <label class="col-md-1 col-form-label">MobileNo :</label>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.QuotationDayList[i].ClientMobileNo, new { @class = "form-control m-input" })
+                    @Html.ValidationMessageFor(x => x.QuotationDayList[i].ClientMobileNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Wages</th>
+                                <th>Role</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="Employee_@i">
+                            @for (int j = 0; j < Model.QuotationDayList[i].EmployeeQuotationDayList.Count(); j++)
+                            {
+
+                                <tr data-Dayid="@i" data-Empid="@j" id="tr_@(i)_@(j)">
+                                    <td>
+                                        @Html.DropDownListFor(x => x.QuotationDayList[i].EmployeeQuotationDayList[j].EmployeeID, Model.QuotationDayList[i].EmployeeQuotationDayList[j].EmployeeList, new { @class = "form-control m-input" })
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.QuotationDayList[i].EmployeeQuotationDayList[j].Wages, new { @class = "form-control m-input" })
+                                    </td>
+
+                                    <td>
+                                        @Html.TextBoxFor(x => x.QuotationDayList[i].EmployeeQuotationDayList[j].EmployeeRole, new { @class = "form-control m-input" })
+                                    </td>
+                                    <td><button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="m-separator m-separator--dashed m-sm-0"></div>
+        </div>
+        }
+    }
+}

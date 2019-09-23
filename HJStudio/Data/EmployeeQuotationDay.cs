@@ -17,9 +17,7 @@ namespace HJStudio.Data
         public int EmployeeQuotationDaysID { get; set; }
         public Nullable<int> QuotationDaysID { get; set; }
         public Nullable<int> EmployeeID { get; set; }
-        public Nullable<int> Wages { get; set; }
-    
-        public virtual QuotationDay QuotationDay { get; set; }
-        public virtual EmployeeMaster EmployeeMaster { get; set; }
+        public Nullable<double> Wages { get; set; }
+        public string EmployeeRole { get; set; }
     }
 }

@@ -14,14 +14,8 @@ namespace HJStudio.Data
     
     public partial class EmployeeMaster
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EmployeeMaster()
-        {
-            this.EmployeeQuotationDays = new HashSet<EmployeeQuotationDay>();
-        }
-    
         public int EmployeeID { get; set; }
-        public string EmplyeeUniqueID__UniqueId__UniqueId__UniqueID_______ { get; set; }
+        public string EmplyeeUniqueID { get; set; }
         public string Name { get; set; }
         public string MobileNo { get; set; }
         public string EmailId { get; set; }
@@ -39,8 +33,6 @@ namespace HJStudio.Data
         public Nullable<int> HalfDayWages { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<int> MonthlyWages { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeQuotationDay> EmployeeQuotationDays { get; set; }
+        public Nullable<int> WagesType { get; set; }
     }
 }

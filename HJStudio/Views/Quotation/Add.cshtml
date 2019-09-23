@@ -1,0 +1,196 @@
+﻿@model HJStudio.Models.QuotationModel
+
+@{
+    if (Model.QuotationID > 0)
+    {
+        ViewBag.Title = "Edit Quotation";
+    }
+    else
+    {
+        ViewBag.Title = "Add Quotation";
+    }
+}
+<style>
+    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto{
+        padding-right: 3px; 
+     padding-left: 3px; 
+         padding-top: 3px;
+             padding-bottom: 3px;
+    }
+    .form-control{
+            height: 25px;
+            padding: .2rem 1rem;
+    }
+    .m-form .form-control-label.col-form-label, .m-form label.col-form-label {
+    padding-top: 0.55rem;
+}
+    .m-form .m-form__group {
+    margin-bottom: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+</style>
+<div class="m-content">
+    <div class="row">
+        <div class="col-md-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+                                <i class="la la-gear"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                @ViewBag.Title
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!--begin::Form-->
+
+                @using (Html.BeginForm("AddEdit", "Quotation", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-form m-form--fit m-form--label-align-right" }))
+                {
+                    @Html.HiddenFor(x => x.QuotationID)
+                    <div class="m-portlet__body">
+
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">Quotation Date :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.QuotationDate, "{0:dd/MM/yyyy}", new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.QuotationDate, "", new { @class = "text-danger" })
+
+                            </div>
+                            <label class="col-md-2 col-form-label">Event Date :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.EventStartDate, "{0:dd/MM/yyyy}", new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.EventStartDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">User Type :</label>
+                            <div class="col-md-4">
+                                @Html.DropDownListFor(x => x.ClientID, ViewBag.Userlist as SelectList, "Select Existing Client", new { @class = "form-control Select2DropDown", })
+                                @Html.ValidationMessageFor(x => x.ClientID, "", new { @class = "text-danger" })
+                            </div>
+                            <label class="col-md-2 col-form-label">Name :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">MobileNo :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.MobileNo, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.MobileNo, "", new { @class = "text-danger" })
+                            </div>
+
+                            <label class="col-md-2 col-form-label">EmailId :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.EmailId, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.EmailId, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">Address 1 :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.Address1, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.Address1, "", new { @class = "text-danger" })
+                            </div>
+                            <label class="col-md-2 col-form-label">Address 2 :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.Address2, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.Address2, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">City :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.City, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.City, "", new { @class = "text-danger" })
+                            </div>
+                            <label class="col-md-2 col-form-label">State :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.State, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.State, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">Refrence :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.Refrence, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.Refrence, "", new { @class = "text-danger" })
+                            </div>
+
+                            <label class="col-md-2 col-form-label">Event Days :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.EventDays, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.EventDays, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="m-separator m-separator--dashed m-sm-0"></div>
+                    <div class="m-form__section" id="DivEventDays">
+                        <div class="m-form__heading">
+                            <h3 class="m-form__heading-title">Event Days Details <i data-toggle="m-tooltip" data-width="auto" class="m-form__heading-help-icon flaticon-info" title="" data-original-title="Add event days"></i></h3>
+                        </div>
+                      
+                    </div>
+                    <div class="m-portlet__foot m-portlet__foot--fit">
+                        <div class="m-form__actions">
+                            <div class="row">
+                                <div class="col-2">
+                                </div>
+                                <div class="col-10">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <a href="~/Employee" class="btn btn-secondary">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section   Scripts{
+    <script>
+        $("#EventDays").on("blur", function () {
+            var days = parseInt($("#EventDays").val()) || 0;
+            var existDays = (parseInt($(".DivEventDays").length));
+            if (days > 0 && existDays != days) {
+                if (days < existDays) {
+                    for (var i = days; i <= (existDays + 1) ; i++) {
+                        $("#DivEventDays_" + i).remove();
+                    }
+                } else {
+                    mApp.blockPage();
+                    $.ajax({
+                        cache: false,
+                        type: "GET",
+                        url: "/Quotation/AddQuotationDays/",
+                        data: { EventDays: days, ExistDays: existDays },
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "html",
+                        success: function (data) {
+                            $("#DivEventDays").append(data);
+                            mApp.unblockPage();
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            mApp.unblockPage();
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+}

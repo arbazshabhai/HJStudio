@@ -178,6 +178,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\QuotationController.cs" />
     <Compile Include="Data\CalenderEvent.cs">
       <DependentUpon>HJStudioData.tt</DependentUpon>
     </Compile>
@@ -224,9 +225,11 @@
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\jQueryDataTableParamModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\QuotationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\EmployeeService.cs" />
     <Compile Include="Service\LoginService.cs" />
+    <Compile Include="Service\QuotationService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -404,6 +407,9 @@
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Quotation\Add.cshtml" />
+    <Content Include="Views\Quotation\_AddQuotationDays.cshtml" />
+    <Content Include="Views\Quotation\_AddEmployeeList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

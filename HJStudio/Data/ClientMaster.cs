@@ -14,12 +14,6 @@ namespace HJStudio.Data
     
     public partial class ClientMaster
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ClientMaster()
-        {
-            this.QuotationMasters = new HashSet<QuotationMaster>();
-        }
-    
         public int ClientID { get; set; }
         public string Name { get; set; }
         public byte[] MobileNo { get; set; }
@@ -33,8 +27,5 @@ namespace HJStudio.Data
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<QuotationMaster> QuotationMasters { get; set; }
     }
 }
