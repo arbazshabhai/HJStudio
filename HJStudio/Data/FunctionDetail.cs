@@ -12,24 +12,22 @@ namespace HJStudio.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductMaster
+    public partial class FunctionDetail
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductMaster()
-        {
-            this.ProductQuotations = new HashSet<ProductQuotation>();
-        }
-    
-        public int ProductId { get; set; }
-        public string ProductName { get; set; }
-        public string ProductDescription { get; set; }
-        public Nullable<double> Amount { get; set; }
+        public int Id { get; set; }
+        public string FunctionName { get; set; }
+        public string FunctionDescription { get; set; }
+        public Nullable<int> ClientId { get; set; }
+        public Nullable<System.DateTime> FunctionDate { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public Nullable<int> Status { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductQuotation> ProductQuotations { get; set; }
+        public virtual ClientMaster ClientMaster { get; set; }
     }
 }

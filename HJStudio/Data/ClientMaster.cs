@@ -18,11 +18,12 @@ namespace HJStudio.Data
         public ClientMaster()
         {
             this.QuotationMasters = new HashSet<QuotationMaster>();
+            this.FunctionDetails = new HashSet<FunctionDetail>();
         }
     
         public int ClientID { get; set; }
         public string Name { get; set; }
-        public byte[] MobileNo { get; set; }
+        public string MobileNo { get; set; }
         public string EmailId { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
@@ -36,5 +37,7 @@ namespace HJStudio.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuotationMaster> QuotationMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FunctionDetail> FunctionDetails { get; set; }
     }
 }

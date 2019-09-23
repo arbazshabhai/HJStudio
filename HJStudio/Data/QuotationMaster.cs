@@ -34,10 +34,10 @@ namespace HJStudio.Data
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> Status { get; set; }
     
-        public virtual ClientMaster ClientMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductQuotation> ProductQuotations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuotationDay> QuotationDays { get; set; }
+        public virtual ClientMaster ClientMaster { get; set; }
     }
 }

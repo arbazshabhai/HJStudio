@@ -43,9 +43,9 @@ namespace HJStudio.Controllers
                 model.ActionType = "Register";
 
             var UserList = (from UserType e in Enum.GetValues(typeof(UserType)) select new { Id = (int)e, Name = CommanModel.GetEnumDisplayName(e) });
-
+            var wages = (from wagestype e in Enum.GetValues(typeof(wagestype)) select new { Id = (int)e, Name = e });
             ViewBag.Userlist = new SelectList(UserList, "Id", "Name");
-
+            ViewBag.wageslist = new SelectList(wages, "Id","Name");
             return View(model);
         }
 
@@ -68,8 +68,13 @@ namespace HJStudio.Controllers
             EmployeeModel model = new EmployeeModel();
             model.ActionType = "Update";
             model = EmployeeService.getEventbyId(id);
+
             var UserList = (from UserType e in Enum.GetValues(typeof(UserType)) select new { Id = (int)e, Name = CommanModel.GetEnumDisplayName(e) });
-            ViewBag.Userlist = new SelectList(UserList, "Id", "Name");           
+            var wages = (from wagestype e in Enum.GetValues(typeof(wagestype)) select new { Id = (int)e, Name = e });
+
+            ViewBag.Userlist = new SelectList(UserList, "Id", "Name");
+            ViewBag.wageslist = new SelectList(wages, "Id", "Name");
+
             return View("Add", model);
         }
         

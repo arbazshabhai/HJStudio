@@ -21,7 +21,7 @@ namespace HJStudio.Data
         public Nullable<int> Amount { get; set; }
         public Nullable<long> TotalAmount { get; set; }
     
-        public virtual ProductMaster ProductMaster { get; set; }
         public virtual QuotationMaster QuotationMaster { get; set; }
+        public virtual ProductMaster ProductMaster { get; set; }
     }
 }
