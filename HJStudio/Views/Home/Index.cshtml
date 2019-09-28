@@ -15,6 +15,9 @@
                 </h3>
             </div>
         </div>
+        <div class="m-portlet__head-tools">
+            @Html.ActionLink("Add Enquiry", "Add Enquiry", new { controller = "Enquiry" }, new { @class = "btn btn-primary" })
+        </div>
 
     </div>
     <div class="m-portlet__body">
@@ -22,8 +25,15 @@
     </div>
 </div>
 
+<div class="modal fade" id="modalinquirydollowup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" id="followupcontent">
+
+        </div>
+    </div>
+</div>
+
 
 @section Scripts{
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-}
+    @*<script src="~/Content/JavaScript/jquery.unobtrusive-ajax.min.js"></script>*@
 }

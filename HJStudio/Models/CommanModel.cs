@@ -57,8 +57,7 @@ namespace HJStudio.Models
     }
     public enum UserType
     {
-        [Display(Name = "Super Admin")]
-        Super,
+
         [Display(Name = "Admin User")]
         Admin,
         [Display(Name = "User")]
@@ -69,6 +68,13 @@ namespace HJStudio.Models
     {
         Monthly,
         Daily
+    }
+
+    public enum Enquirytype
+    {
+        waiting,
+        Pending,
+        Confirmed
     }
 
     public class CalendarModel

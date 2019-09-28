@@ -1,0 +1,212 @@
+﻿@model HJStudio.Models.EnquiryModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="m-content">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("AddEdit", "Enquiry", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-form m-form--fit m-form--label-align-right" }))
+            {
+                <!--begin::Portlet-->
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Client Detail
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--begin::Form-->
+
+
+
+                    <div class="m-portlet__body">
+
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">Select Client :</label>
+                            <div class="col-md-4">
+                                @Html.DropDownListFor(x => x.client.ClientID, ViewBag.ClientList as SelectList, "New Client", new { @class = "form-control Select2DropDown", onchange = "getData(this);" })
+                                
+                                @Html.HiddenFor(x => x.client.ClientID)
+                            </div>
+                            <label class="col-md-2 col-form-label">Name :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.client.Name, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.client.Name, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">Mobile No :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.client.MobileNo, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.client.MobileNo, "", new { @class = "text-danger" })
+                            </div>
+                            <label class="col-md-2 col-form-label">Refereance Name :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.client.Refrence, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.client.Refrence, "", new { @class = "text-danger" })
+                            </div>
+                            
+
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">Address 1 :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.client.Address1, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.client.Address1, "", new { @class = "text-danger" })
+                            </div>
+                            <label class="col-md-2 col-form-label">Address 2 :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.client.Address2, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.client.Address2, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">City :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.client.City, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.City, "", new { @class = "text-danger" })
+                            </div>
+                            <label class="col-md-2 col-form-label">State :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.client.State, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.client.State, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">Email-Id :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.client.EmailId, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.client.EmailId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                  
+
+                
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Function Enquiry Form
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--begin::Form-->
+
+
+
+                    <div class="m-portlet__body">
+
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">Name :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.FunctionName, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.FunctionName, "", new { @class = "text-danger" })
+
+                            </div>
+                            <label class="col-md-2 col-form-label">Description :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.FunctionDescription, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.FunctionDescription, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">Date :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.FunctionDate, new { @class = "form-control m-input m_datepicker_PD" })
+                                @Html.ValidationMessageFor(x => x.FunctionDate, "", new { @class = "text-danger" })
+                            </div>
+                            <label class="col-md-2 col-form-label">Address :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.Address, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="col-md-2 col-form-label">City :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.City, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.City, "", new { @class = "text-danger" })
+                            </div>
+                            <label class="col-md-2 col-form-label">State :</label>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(x => x.State, new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(x => x.State, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="m-portlet__foot m-portlet__foot--fit">
+                        <div class="m-form__actions">
+                            <div class="row">
+                                <div class="col-2">
+                                </div>
+                                <div class="col-10">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <a href="~/Client" class="btn btn-secondary">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function getData(id) {
+        $.ajax({
+            type: 'Get',
+            async: false,
+            url: "/Enquiry/GetDatabyClientID",
+            data: { Id: id.options.selectedIndex },
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                if (result != null) {
+                    $('#client_ClientID').val(result.ClientID)
+                    $('#client_Name').val(result.Name);
+                    $('#client_MobileNo').val(result.MobileNo);
+                    $('#client_Refrence').val(result.Refrence);
+                    $('#client_Address1').val(result.Address1);
+                    $('#client_Address2').val(result.Address2);
+                    $('#client_City').val(result.City);
+                    $('#client_State').val(result.State);
+                    $('#client_EmailId').val(result.EmailId);
+                }
+                else {
+                    toastr.error("something went wrong try again later.")
+                }
+            },
+            error: function (e) {
+                toastr.error('Error', "something went wrong try again later.");
+            }
+        });
+    }
+</script>

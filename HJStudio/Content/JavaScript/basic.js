@@ -43,7 +43,7 @@ jQuery(document).ready(function () {
 function addfollowup(InquiryId) {
     $.ajax({
         type: "GET",
-        url: "/Inquiry/AddInquiryFollowUp",
+        url: "/Enquiry/AddEnquiryFollowUp",
         contentType: "application/json; charset=utf-8",
         datatype: "html",
         data: { InquiryId: InquiryId },

@@ -1,10 +1,10 @@
-﻿@model Aloha.Core.InquiryFollowUpModel
+﻿@model  HJStudio.Models.EnquiryFollowUpModel
 <style>
     .m-portlet {
         margin-bottom: 0px;
     }
 </style>
-@using (Ajax.BeginForm("AddInquiryFollowUp", "Inquiry", new AjaxOptions { HttpMethod = "POST", OnBegin = "BeginFollowUp", OnSuccess = "SuccessFollowUp" }))
+@using (Ajax.BeginForm("AddEnquiryFollowUp", "Enquiry", new AjaxOptions { HttpMethod = "POST", OnBegin = "BeginFollowUp", OnSuccess = "SuccessFollowUp" }))
 {
     @Html.HiddenFor(x => x.InquiryId)
     <div class="modal-header">
@@ -19,12 +19,12 @@
             <label class="col-md-4 col-form-label">Next FollowUp Date:</label>
             <div class="col-md-8">
                 <div class="input-group date">
-                    @Html.TextBoxFor(x => x.NextFolowupDate, new { @class = "form-control m-input Datetimepicker", @autocomplete = "off", @placeholder = "select date" })
-                    <div class="input-group-append">
+                    @Html.TextBoxFor(x => x.NextFolowupDate, new { @class = "form-control m-input m_datepicker_PD", @placeholder = "select date" })
+                    @*<div class="input-group-append">
                         <span class="input-group-text">
                             <i class="la la-calendar-check-o"></i>
                         </span>
-                    </div>
+                    </div>*@
                 </div>
                 @Html.ValidationMessageFor(x => x.NextFolowupDate, "", new { @class = "text-danger" })
             </div>
@@ -39,7 +39,7 @@
         <div class="form-group row">
             <label class="col-md-4 col-form-label">Status:</label>
             <div class="col-md-8">
-                @Html.DropDownListFor(x => x.InquiryStatus, EnumHelper.GetSelectList(typeof(Aloha.Core.InquiryStatus)), "Select", new { @class = "form-control m-input" })
+                @Html.DropDownListFor(x => x.InquiryStatus, ViewBag.EnquiryType as SelectList, "Select", new { @class = "form-control m-input" })
                 @Html.ValidationMessageFor(x => x.InquiryStatus, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,25 +67,25 @@
 
         <!--begin::Widget 29-->
         <div class="m-widget29">
-            @if (Model.InquiryFollowUpList != null)
+            @if (Model.EnquiryFollowUpList != null)
             {
-                foreach (var item in Model.InquiryFollowUpList)
+                foreach (var item in Model.EnquiryFollowUpList)
                 {
                     <div class="m-widget_content">
-                        <h3 class="m-widget_content-title">@item.CreatedByName ( @(item.CreatedDate == null ? "" : item.CreatedDate.Value.ToString("dd/MM/yyyy")) )</h3>
+                        @*<h3 class="m-widget_content-title">@item.CreatedByName ( @(item.CreatedDate == null ? "" : item.CreatedDate.Value.ToString("dd/MM/yyyy")) )</h3>*@
                         <div class="m-widget_content-items">
                             <div class="m-widget_content-item">
                                 <span>Next Followup Date:</span>
-                                <span class="m--font-accent">@(item.NextFolowupDate == null ? "" : item.NextFolowupDate.Value.ToString("dd/MM/yyyy HH:mm tt"))</span>
+                                @*<span class="m--font-accent">@(item.NextFolowupDate == null ? "" : item.NextFolowupDate.Value.ToString("dd/MM/yyyy HH:mm tt"))</span>*@
                             </div>
                             <div class="m-widget_content-item">
                                 <span>Status</span>
-                                <span class="m--font-brand">@item.InquiryStatusString</span>
+                                @*<span class="m--font-brand">@item.InquiryStatusString</span>*@
                             </div>
 
                         </div>
                         <div class="m-widget_content-items">
-                            @Html.Raw(item.Remarks)
+                            @*@Html.Raw(item.Remarks)*@
                         </div>
                     </div>
                 }
