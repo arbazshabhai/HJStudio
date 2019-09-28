@@ -17,7 +17,7 @@ namespace HJStudio.Data
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
-        public Nullable<int> Amount { get; set; }
+        public Nullable<double> Amount { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string ModifiedBy { get; set; }

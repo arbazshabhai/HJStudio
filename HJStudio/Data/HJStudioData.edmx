@@ -26,7 +26,7 @@
           </Key>
           <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="250" />
-          <Property Name="MobileNo" Type="varbinary" MaxLength="50" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
           <Property Name="EmailId" Type="varchar" MaxLength="250" />
           <Property Name="Address1" Type="varchar" MaxLength="100" />
           <Property Name="Address2" Type="varchar" MaxLength="100" />
@@ -43,7 +43,7 @@
             <PropertyRef Name="EmployeeID" />
           </Key>
           <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmplyeeUniqueID" Type="varchar" MaxLength="50" />
+          <Property Name="EmplyeeUniqueID&#xD;&#xA;UniqueId&#xD;&#xA;UniqueId&#xD;&#xA;UniqueID]]]]]]]]]]]]]]]" Type="varchar" MaxLength="50" />
           <Property Name="Name" Type="varchar" MaxLength="200" />
           <Property Name="MobileNo" Type="varchar" MaxLength="50" />
           <Property Name="EmailId" Type="varchar" MaxLength="500" />
@@ -57,10 +57,10 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="varchar" MaxLength="100" />
           <Property Name="ModifiedDate" Type="datetime" />
-          <Property Name="DailyWages" Type="int" />
-          <Property Name="HalfDayWages" Type="int" />
+          <Property Name="DailyWages" Type="float" />
+          <Property Name="HalfDayWages" Type="float" />
           <Property Name="Status" Type="int" />
-          <Property Name="MonthlyWages" Type="int" />
+          <Property Name="MonthlyWages" Type="float" />
           <Property Name="WagesType" Type="int" />
         </EntityType>
         <EntityType Name="EmployeeQuotationDays">
@@ -73,6 +73,24 @@
           <Property Name="Wages" Type="float" />
           <Property Name="EmployeeRole" Type="varchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="FunctionDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FunctionName" Type="varchar" MaxLength="200" />
+          <Property Name="FunctionDescription" Type="varchar" MaxLength="1500" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="FunctionDate" Type="datetime" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="City" Type="varchar" MaxLength="100" />
+          <Property Name="State" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="int" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="ProductMaster">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -80,7 +98,7 @@
           <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="100" />
           <Property Name="ProductDescription" Type="varchar" MaxLength="250" />
-          <Property Name="Amount" Type="int" />
+          <Property Name="Amount" Type="float" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="varchar" MaxLength="100" />
@@ -142,20 +160,52 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="Status" Type="int" />
         </EntityType>
+        <Association Name="FK_FunctionDetail_ClientMaster">
+          <End Role="ClientMaster" Type="Self.ClientMaster" Multiplicity="0..1" />
+          <End Role="FunctionDetail" Type="Self.FunctionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientMaster">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="FunctionDetail">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="HJStudioModelStoreContainer">
           <EntitySet Name="CalenderEvents" EntityType="Self.CalenderEvents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientMaster" EntityType="Self.ClientMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeMaster" EntityType="Self.EmployeeMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeQuotationDays" EntityType="Self.EmployeeQuotationDays" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FunctionDetail" EntityType="Self.FunctionDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductQuotation" EntityType="Self.ProductQuotation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuotationDays" EntityType="Self.QuotationDays" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuotationMaster" EntityType="Self.QuotationMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FunctionDetail_ClientMaster" Association="Self.FK_FunctionDetail_ClientMaster">
+            <End Role="ClientMaster" EntitySet="ClientMaster" />
+            <End Role="FunctionDetail" EntitySet="FunctionDetail" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HJStudioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HJStudioEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CalenderEvents" EntityType="HJStudioModel.CalenderEvent" />
+          <EntitySet Name="ClientMasters" EntityType="HJStudioModel.ClientMaster" />
+          <EntitySet Name="EmployeeMasters" EntityType="HJStudioModel.EmployeeMaster" />
+          <EntitySet Name="EmployeeQuotationDays" EntityType="HJStudioModel.EmployeeQuotationDay" />
+          <EntitySet Name="FunctionDetails" EntityType="HJStudioModel.FunctionDetail" />
+          <EntitySet Name="ProductQuotations" EntityType="HJStudioModel.ProductQuotation" />
+          <EntitySet Name="QuotationDays" EntityType="HJStudioModel.QuotationDay" />
+          <EntitySet Name="QuotationMasters" EntityType="HJStudioModel.QuotationMaster" />
+          <AssociationSet Name="FK_FunctionDetail_ClientMaster" Association="HJStudioModel.FK_FunctionDetail_ClientMaster">
+            <End Role="ClientMaster" EntitySet="ClientMasters" />
+            <End Role="FunctionDetail" EntitySet="FunctionDetails" />
+          </AssociationSet>
+          <EntitySet Name="ProductMasters" EntityType="HJStudioModel.ProductMaster" />
+        </EntityContainer>
         <EntityType Name="CalenderEvent">
           <Key>
             <PropertyRef Name="CalenderID" />
@@ -177,7 +227,7 @@
           </Key>
           <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmailId" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -188,36 +238,14 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="FunctionDetails" Relationship="HJStudioModel.FK_FunctionDetail_ClientMaster" FromRole="ClientMaster" ToRole="FunctionDetail" />
         </EntityType>
-        <EntityType Name="ProductMaster">
-          <Key>
-            <PropertyRef Name="ProductId" />
-          </Key>
-          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ProductDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Amount" Type="Int32" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityContainer Name="HJStudioEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CalenderEvents" EntityType="Self.CalenderEvent" />
-          <EntitySet Name="ClientMasters" EntityType="Self.ClientMaster" />
-          <EntitySet Name="ProductMasters" EntityType="Self.ProductMaster" />
-          <EntitySet Name="EmployeeMasters" EntityType="HJStudioModel.EmployeeMaster" />
-          <EntitySet Name="EmployeeQuotationDays" EntityType="HJStudioModel.EmployeeQuotationDay" />
-          <EntitySet Name="ProductQuotations" EntityType="HJStudioModel.ProductQuotation" />
-          <EntitySet Name="QuotationDays" EntityType="HJStudioModel.QuotationDay" />
-          <EntitySet Name="QuotationMasters" EntityType="HJStudioModel.QuotationMaster" />
-        </EntityContainer>
         <EntityType Name="EmployeeMaster">
           <Key>
             <PropertyRef Name="EmployeeID" />
           </Key>
           <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmplyeeUniqueID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmplyeeUniqueID__UniqueId__UniqueId__UniqueID_______________" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmailId" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
@@ -231,10 +259,10 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="DailyWages" Type="Int32" />
-          <Property Name="HalfDayWages" Type="Int32" />
+          <Property Name="DailyWages" Type="Double" />
+          <Property Name="HalfDayWages" Type="Double" />
           <Property Name="Status" Type="Int32" />
-          <Property Name="MonthlyWages" Type="Int32" />
+          <Property Name="MonthlyWages" Type="Double" />
           <Property Name="WagesType" Type="Int32" />
         </EntityType>
         <EntityType Name="EmployeeQuotationDay">
@@ -246,6 +274,25 @@
           <Property Name="EmployeeID" Type="Int32" />
           <Property Name="Wages" Type="Double" />
           <Property Name="EmployeeRole" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FunctionDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FunctionName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FunctionDescription" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="FunctionDate" Type="DateTime" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ClientMaster" Relationship="HJStudioModel.FK_FunctionDetail_ClientMaster" FromRole="FunctionDetail" ToRole="ClientMaster" />
         </EntityType>
         <EntityType Name="ProductQuotation">
           <Key>
@@ -303,7 +350,32 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Int32" />
         </EntityType>
-      </Schema>
+        <Association Name="FK_FunctionDetail_ClientMaster">
+          <End Type="HJStudioModel.ClientMaster" Role="ClientMaster" Multiplicity="0..1" />
+          <End Type="HJStudioModel.FunctionDetail" Role="FunctionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientMaster">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="FunctionDetail">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductMaster">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -312,49 +384,35 @@
           <EntitySetMapping Name="CalenderEvents">
             <EntityTypeMapping TypeName="HJStudioModel.CalenderEvent">
               <MappingFragment StoreEntitySet="CalenderEvents">
-                <ScalarProperty Name="CalenderID" ColumnName="CalenderID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="EventStart" ColumnName="EventStart" />
-                <ScalarProperty Name="EventEnd" ColumnName="EventEnd" />
-                <ScalarProperty Name="BackgroundColor" ColumnName="BackgroundColor" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="BackgroundColor" ColumnName="BackgroundColor" />
+                <ScalarProperty Name="EventEnd" ColumnName="EventEnd" />
+                <ScalarProperty Name="EventStart" ColumnName="EventStart" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CalenderID" ColumnName="CalenderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ClientMasters">
             <EntityTypeMapping TypeName="HJStudioModel.ClientMaster">
               <MappingFragment StoreEntitySet="ClientMaster">
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="Address1" ColumnName="Address1" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Refrence" ColumnName="Refrence" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductMasters">
-            <EntityTypeMapping TypeName="HJStudioModel.ProductMaster">
-              <MappingFragment StoreEntitySet="ProductMaster">
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -379,7 +437,7 @@
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="EmplyeeUniqueID" ColumnName="EmplyeeUniqueID" />
+                <ScalarProperty Name="EmplyeeUniqueID__UniqueId__UniqueId__UniqueID_______________" ColumnName="EmplyeeUniqueID&#xD;&#xA;UniqueId&#xD;&#xA;UniqueId&#xD;&#xA;UniqueID]]]]]]]]]]]]]]]" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -392,6 +450,25 @@
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="QuotationDaysID" ColumnName="QuotationDaysID" />
                 <ScalarProperty Name="EmployeeQuotationDaysID" ColumnName="EmployeeQuotationDaysID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FunctionDetails">
+            <EntityTypeMapping TypeName="HJStudioModel.FunctionDetail">
+              <MappingFragment StoreEntitySet="FunctionDetail">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="FunctionDate" ColumnName="FunctionDate" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="FunctionDescription" ColumnName="FunctionDescription" />
+                <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -451,6 +528,20 @@
                 <ScalarProperty Name="EventStartDate" ColumnName="EventStartDate" />
                 <ScalarProperty Name="QuotationDate" ColumnName="QuotationDate" />
                 <ScalarProperty Name="QuotationID" ColumnName="QuotationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductMasters">
+            <EntityTypeMapping TypeName="HJStudioModel.ProductMaster">
+              <MappingFragment StoreEntitySet="ProductMaster">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

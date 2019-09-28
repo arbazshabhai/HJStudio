@@ -65,4 +65,20 @@ namespace HJStudio.Models
         User,
 
     }
+    public enum wagestype
+    {
+        Monthly,
+        Daily
+    }
+
+    public class CalendarModel
+    {
+        public int id { get; set; }
+        public string title { get; set; }
+        public string start { get; set; }
+        public string end { get; set; }
+        public string description { get; set; }
+        public string className { get; set; }
+        public string url { get; set; }
+    }
 }

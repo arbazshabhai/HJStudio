@@ -12,29 +12,22 @@ namespace HJStudio.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ClientMaster
+    public partial class FunctionDetail
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ClientMaster()
-        {
-            this.FunctionDetails = new HashSet<FunctionDetail>();
-        }
-    
-        public int ClientID { get; set; }
-        public string Name { get; set; }
-        public string MobileNo { get; set; }
-        public string EmailId { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
+        public int Id { get; set; }
+        public string FunctionName { get; set; }
+        public string FunctionDescription { get; set; }
+        public Nullable<int> ClientId { get; set; }
+        public Nullable<System.DateTime> FunctionDate { get; set; }
+        public string Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public string Refrence { get; set; }
+        public Nullable<int> Status { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FunctionDetail> FunctionDetails { get; set; }
+        public virtual ClientMaster ClientMaster { get; set; }
     }
 }

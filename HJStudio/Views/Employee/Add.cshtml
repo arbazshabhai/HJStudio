@@ -29,97 +29,104 @@
                 @using (Html.BeginForm("AddEdit", "Employee", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-form m-form--fit m-form--label-align-right" }))
                 {
                     @Html.HiddenFor(x => x.EmployeeID)
-                        <div class="m-portlet__body">
+                <div class="m-portlet__body">
 
-                            <div class="form-group m-form__group row">
-                                <label class="col-md-2 col-form-label">Name :</label>
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control m-input"})
-                                    @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
-                                   
-                                </div>
-                                <label class="col-md-2 col-form-label">Mobile No :</label>
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(x => x.MobileNo, new { @class = "form-control m-input"})
-                                    @Html.ValidationMessageFor(x => x.MobileNo, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group m-form__group row">
-                                <label class="col-md-2 col-form-label">User Type :</label>
-                                <div class="col-md-4">
-                                    @Html.DropDownListFor(x => x.UserType, ViewBag.Userlist as SelectList, "Select User Type", new { @class = "form-control Select2DropDown", })
-                                    @Html.ValidationMessageFor(x => x.UserType, "", new { @class = "text-danger" })
-                                </div>
-                                <label class="col-md-2 col-form-label">Email-Id :</label>
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(x => x.EmailId, new { @class = "form-control m-input"})
-                                    @Html.ValidationMessageFor(x => x.EmailId, "", new { @class = "text-danger" })
-                                </div>
-
-                            </div>
-                            <div class="form-group m-form__group row">
-                                <label class="col-md-2 col-form-label">Password :</label>
-                                <div class="col-md-4">
-                                    @Html.PasswordFor(x => x.Password, new { @class = "form-control m-input" })
-                                    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
-                                </div>
-
-                                <label class="col-md-2 col-form-label">Confirm Password :</label>
-                                <div class="col-md-4">
-                                    @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control m-input"})
-                                    @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
-                                </div>
-
-                            </div>
-                            <div class="form-group m-form__group row">
-                                <label class="col-md-2 col-form-label">Address 1 :</label>
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(x => x.Address1, new { @class = "form-control m-input"})
-                                    @Html.ValidationMessageFor(x => x.Address1, "", new { @class = "text-danger" })
-                                </div>
-                                <label class="col-md-2 col-form-label">Address 2 :</label>
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(x => x.Address2, new { @class = "form-control m-input"})
-                                    @Html.ValidationMessageFor(x => x.Address2, "", new { @class = "text-danger" })
-                                </div>
-
-                            </div>
-                            <div class="form-group m-form__group row">
-                                <label class="col-md-2 col-form-label">City :</label>
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(x => x.City, new { @class = "form-control m-input"})
-                                    @Html.ValidationMessageFor(x => x.City, "", new { @class = "text-danger" })
-                                </div>
-                                <label class="col-md-2 col-form-label">State :</label>
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(x => x.State, new { @class = "form-control m-input"})
-                                    @Html.ValidationMessageFor(x => x.State, "", new { @class = "text-danger" })
-                                </div>
-
-                            </div>
-                            <div class="form-group m-form__group row">
-                                <label class="col-md-2 col-form-label">Monthly Wages :</label>
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(x => x.MonthlyWages, new { @class = "form-control m-input"})
-                                    @Html.ValidationMessageFor(x => x.MonthlyWages, "", new { @class = "text-danger" })
-                                </div>
-
-                                <label class="col-md-2 col-form-label">Daily Wages :</label>
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(x => x.DailyWages, new { @class = "form-control m-input"})
-                                    @Html.ValidationMessageFor(x => x.DailyWages, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group m-form__group row">
-                                <label class="col-md-2 col-form-label">City :</label>
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(x => x.HalfDayWages, new { @class = "form-control m-input"})
-                                    @Html.ValidationMessageFor(x => x.HalfDayWages, "", new { @class = "text-danger" })
-                                </div>
-
-                            </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-md-2 col-form-label">Name :</label>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
 
                         </div>
+                        <label class="col-md-2 col-form-label">Mobile No :</label>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.MobileNo, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.MobileNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-md-2 col-form-label">User Type :</label>
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(x => x.UserType, ViewBag.Userlist as SelectList, "Select User Type", new { @class = "form-control Select2DropDown", })
+                            @Html.ValidationMessageFor(x => x.UserType, "", new { @class = "text-danger" })
+                        </div>
+                        <label class="col-md-2 col-form-label">Email-Id :</label>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.EmailId, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.EmailId, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-md-2 col-form-label">Password :</label>
+                        <div class="col-md-4">
+                            @Html.PasswordFor(x => x.Password, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                        </div>
+
+                        <label class="col-md-2 col-form-label">Confirm Password :</label>
+                        <div class="col-md-4">
+                            @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-md-2 col-form-label">Address 1 :</label>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.Address1, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.Address1, "", new { @class = "text-danger" })
+                        </div>
+                        <label class="col-md-2 col-form-label">Address 2 :</label>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.Address2, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.Address2, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-md-2 col-form-label">City :</label>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.City, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.City, "", new { @class = "text-danger" })
+                        </div>
+                        <label class="col-md-2 col-form-label">State :</label>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.State, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.State, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <label class="col-md-2 col-form-label">Wages Type :</label>
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(x => x.WagesType, ViewBag.wageslist as SelectList, "Select Wages Type", new { @class = "form-control Select2DropDown", onchange="ChangeType(this);" })
+                            @Html.ValidationMessageFor(x => x.WagesType, "", new { @class = "text-danger" })
+                        </div>
+                        <label class="col-md-2 col-form-label mwages" style="display:none;">Monthly Wages :</label>
+                        <div class="col-md-4 mwages" style="display:none;">
+                            @Html.TextBoxFor(x => x.MonthlyWages, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.MonthlyWages, "", new { @class = "text-danger" })
+                        </div>
+
+                        <label class="col-md-2 col-form-label dwages" style="display:none;">Daily Wages :</label>
+                        <div class="col-md-4 dwages" style="display:none;">
+                            @Html.TextBoxFor(x => x.DailyWages, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.DailyWages, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-md-2 col-form-label dwages" style="display:none;">Half Day Wages :</label>
+                        <div class="col-md-4 dwages" style="display:none;">
+                            @Html.TextBoxFor(x => x.HalfDayWages, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.HalfDayWages, "", new { @class = "text-danger" })
+                        </div>
+                        
+                    </div>
+                    
+                </div>
 
                         <div class="m-portlet__foot m-portlet__foot--fit">
                             <div class="m-form__actions">
@@ -140,4 +147,20 @@
 </div>
 
 
-
+<script>
+    function ChangeType(id) {
+        if (id.options.selectedIndex == 1) {
+                $(".mwages").show();
+                $(".dwages").hide();
+        }
+        else if (id.options.selectedIndex == 2) {
+                $(".dwages").show();
+                $(".mwages").hide();
+            }
+            else {
+                $(".dwages").hide();
+                $(".mwages").hide();
+            }
+        }
+    
+</script>

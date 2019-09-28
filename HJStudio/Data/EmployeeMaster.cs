@@ -15,7 +15,7 @@ namespace HJStudio.Data
     public partial class EmployeeMaster
     {
         public int EmployeeID { get; set; }
-        public string EmplyeeUniqueID { get; set; }
+        public string EmplyeeUniqueID__UniqueId__UniqueId__UniqueID_______________ { get; set; }
         public string Name { get; set; }
         public string MobileNo { get; set; }
         public string EmailId { get; set; }
@@ -29,10 +29,10 @@ namespace HJStudio.Data
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> DailyWages { get; set; }
-        public Nullable<int> HalfDayWages { get; set; }
+        public Nullable<double> DailyWages { get; set; }
+        public Nullable<double> HalfDayWages { get; set; }
         public Nullable<int> Status { get; set; }
-        public Nullable<int> MonthlyWages { get; set; }
+        public Nullable<double> MonthlyWages { get; set; }
         public Nullable<int> WagesType { get; set; }
     }
 }

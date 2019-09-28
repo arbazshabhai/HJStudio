@@ -5,14 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="769a6034e5b04d9d925bb0db59c277c7" Name="Diagram1">
-        <EntityTypeShape EntityType="HJStudioModel.CalenderEvent" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HJStudioModel.ClientMaster" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HJStudioModel.ProductMaster" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HJStudioModel.EmployeeMaster" Width="1.5" PointX="7.375" PointY="9.75" />
-        <EntityTypeShape EntityType="HJStudioModel.EmployeeQuotationDay" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="HJStudioModel.ProductQuotation" Width="1.5" PointX="3.375" PointY="3.75" />
-        <EntityTypeShape EntityType="HJStudioModel.QuotationDay" Width="1.5" PointX="5.375" PointY="4.75" />
-        <EntityTypeShape EntityType="HJStudioModel.QuotationMaster" Width="1.5" PointX="9.375" PointY="4.75" />
+        <EntityTypeShape EntityType="HJStudioModel.CalenderEvent" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HJStudioModel.ClientMaster" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="HJStudioModel.EmployeeMaster" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HJStudioModel.EmployeeQuotationDay" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HJStudioModel.FunctionDetail" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="HJStudioModel.ProductQuotation" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HJStudioModel.QuotationDay" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="HJStudioModel.QuotationMaster" Width="1.5" PointX="2.75" PointY="8.75" />
+        <AssociationConnector Association="HJStudioModel.FK_FunctionDetail_ClientMaster" />
+        <EntityTypeShape EntityType="HJStudioModel.ProductMaster" Width="1.5" PointX="5.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

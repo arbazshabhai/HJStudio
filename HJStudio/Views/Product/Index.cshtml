@@ -1,0 +1,233 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-content">
+    <div class="row">
+        <div class="col-md-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+                                <i class="la la-gear"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                @ViewBag.Title
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                        @Html.ActionLink("Add", "Add", new { controller = "Product" }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+
+                <!--begin::Form-->
+                <div class="m-portlet__body">
+                    <!--begin: Datatable -->
+                    <table class="table table-striped- table-tracker table-hover" id="tblProduct"></table>
+                    <!--end: Datatable -->
+                </div>
+                <!--end::Form-->
+            </div>
+
+            <!--end::Portlet-->
+
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    var Table;
+    $(document).ready(function () {
+
+        Table = $('#tblProduct').DataTable({
+            "serverSide": true,
+            "processing": true,
+            "orderMulti": false,
+            "filter": true,
+            "sAjaxSource": "/Product/GetProductDetail",
+            //"iDisplayLength": 10,
+            "ordering": true,
+            "scrollX": true,
+            "responsive": true,
+            "language": {
+                "infoFiltered": ""
+            },
+            //"bSort": true,
+            //"aaSorting": [[1, 'asc'], [2, 'asc'], [3, 'asc']],
+            "columnDefs": [
+                { "orderable": false, "targets": 0 },
+                { "orderable": false, "targets": 4 },
+            ],
+
+            "fnServerData": function (sSource, data, fnCallback) {
+                data.push({ name: "Status", value: false });
+
+                $.ajax({
+                    "dataType": "json",
+                    "type": "POST",
+                    "url": sSource,
+                    "data": data,
+                    "success": fnCallback
+                });
+            },
+
+            "aoColumns": [
+                {
+                    "sTitle": "Action", "className": "action", "orderable": false, render: function (data, type, row, meta) {
+                        var srt
+                        srt = "<a href='/Product/Edit/" + row.ProductId + "' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Edit Client Detail'><i class='fa fa-pen'></i></a>"
+                        //if (row.statusId != 2)
+                        //    srt += "&nbsp;<a href='javascript:;' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Confirm Booking' onclick='ApproveBooking\(" + row.eventBookingId + ")'\><i class='fa fa-check'></i></a>"
+                        //if (row.statusId != 3)
+                        //    srt += "&nbsp;<a href='javascript:;' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-danger m-btn--icon' title='Reject Booking' onclick='RejectBooking\(" + row.eventBookingId + ")'\><i class='fa fa-times'></i></a>"
+
+                        return srt;
+                    }
+                },
+                {
+                    "sTitle": "Name", "className": "", render: function (data, type, row, meta) {
+                        var name = "<strong style='text-transform: capitalize;'>" + row.ProductName + "</strong>";
+                        return name
+                    },
+                },
+                {
+                    "sTitle": "Description", "className": "", render: function (data, type, row, meta) {
+                        return row.ProductDescription
+                    }
+                },
+                {
+                    "sTitle": "Amount", "className": "", render: function (data, type, row, meta) {
+                        return row.Amount
+                    }
+                },
+                {
+                    "sTitle": "Created By", "className": "", render: function (data, type, row, meta) {
+                        return row.CreatedBy
+                    }
+                },
+                {
+                    "sTitle": "Created Date", "className": "", render: function (data, type, row, meta) {
+                        return row.cdate
+                    }
+                }
+            ],
+            "initComplete": function () {
+
+            }
+
+        });
+
+    });
+
+    function RejectBooking(id) {
+        swal({
+            title: "Are you sure?",
+            text: "You are sure want to Reject Booking!",
+            type: "info",
+            allowOutsideClick: "true",
+            showConfirmButton: "Yes",
+            showCancelButton: "No",
+            closeOnConfirm: "true",
+            closeOnCancel: "true"
+        }).then(function (e) {
+            if (e.value == true) {
+                $.ajax({
+                    type: 'Get',
+                    async: false,
+                    url: "/EventBooking/RejectBooking",
+                    data: { Id: id },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        if (result == true) {
+                            toastr.success("Booking Rejected Successfully");
+                            Table.ajax.reload();
+                        }
+                        else {
+                            toastr.error("something went wrong try again later.")
+                        }
+                    },
+                    error: function (e) {
+                        toastr.error('Error', "something went wrong try again later.");
+                    }
+                });
+            }
+        });
+    }
+    function ApproveBooking(id) {
+        swal({
+            title: "Are you sure?",
+            text: "You are sure want to Approve Booking!",
+            type: "info",
+            allowOutsideClick: "true",
+            showConfirmButton: "Yes",
+            showCancelButton: "No",
+            closeOnConfirm: "true",
+            closeOnCancel: "true"
+        }).then(function (e) {
+            if (e.value == true) {
+                $.ajax({
+                    type: 'Get',
+                    async: false,
+                    url: "/EventBooking/ApproveBooking",
+                    data: { Id: id },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        if (result == true) {
+                            toastr.success("Booking Approved Successfully");
+                            Table.ajax.reload();
+                        }
+                        else {
+                            toastr.error("something went wrong try again later.")
+                        }
+                    },
+                    error: function (e) {
+                        toastr.error('Error', "something went wrong try again later.");
+                    }
+                });
+            }
+        });
+    }
+    function DeleteEvent(id) {
+        swal({
+            title: "Are you sure?",
+            text: "You are sure won't be Delete this Event!",
+            type: "info",
+            allowOutsideClick: "true",
+            showConfirmButton: "Yes",
+            showCancelButton: "No",
+            closeOnConfirm: "true",
+            closeOnCancel: "true"
+        }).then(function (e) {
+            if (e.value == true) {
+                $.ajax({
+                    type: 'Get',
+                    async: false,
+                    url: "/Event/DeleteEvent",
+                    data: { Id: id },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        if (result == true) {
+                            toastr.success("Event Deleted Successfully");
+                            Table.ajax.reload();
+                        }
+                        else {
+                            toastr.error("something went wrong try again later.")
+                        }
+                    },
+                    error: function (e) {
+                        toastr.error('Error', "something went wrong try again later.");
+                    }
+                });
+            }
+        });
+    }
+
+</script>
+

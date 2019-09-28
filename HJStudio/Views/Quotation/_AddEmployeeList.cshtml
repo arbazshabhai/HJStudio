@@ -1,19 +1,32 @@
-﻿@*@model HJStudio.Models.QuotationModel
+﻿@model HJStudio.Models.QuotationModel
 
-@for (int j = 0; j < Model.QuotationDayList[i].EmployeeQuotationDayList.Count(); j++)
-{
+@{
+    int i = 0;
+    int.TryParse(TempData["DayId"].ToString(), out i);
+    int j = 0;
+    int.TryParse(TempData["DayEmpId"].ToString(), out j);
+}
 
-    <tr data-Dayid="@i" data-Empid="@j" id="tr_@(i)_@(j)">
-        <td>
-            @Html.DropDownListFor(x => x.QuotationDayList[i].EmployeeQuotationDayList[j].EmployeeID, Model.QuotationDayList[i].EmployeeQuotationDayList[j].EmployeeList, new { @class = "form-control m-input" })
-        </td>
-        <td>
-            @Html.TextBoxFor(x => x.QuotationDayList[i].EmployeeQuotationDayList[j].Wages, new { @class = "form-control m-input" })
-        </td>
 
-        <td>
-            @Html.TextBoxFor(x => x.QuotationDayList[i].EmployeeQuotationDayList[j].EmployeeRole, new { @class = "form-control m-input" })
-        </td>
-        <td><button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>
-    </tr>
-}*@
+<tr data-Dayid="@i" data-Empid="@j" id="tr_@(i)_@(j)">
+    <td>
+        @Html.DropDownListFor(x => x.QuotationDayList[i].EmployeeQuotationDayList[j].EmployeeID, Model.QuotationDayList[i].EmployeeQuotationDayList[j].EmployeeList, "Select", new { @class = "form-control m-input" })
+    </td>
+    <td>
+        @Html.TextBoxFor(x => x.QuotationDayList[i].EmployeeQuotationDayList[j].Wages, new { @class = "form-control m-input" })
+    </td>
+
+    <td>
+        @Html.TextBoxFor(x => x.QuotationDayList[i].EmployeeQuotationDayList[j].EmployeeRole, new { @class = "form-control m-input" })
+    </td>
+    <td>
+        @Html.HiddenFor(x => x.QuotationDayList[i].EmployeeQuotationDayList[j].IsDelete)
+       @* <button type="button" onclick="DeleteEmp(this)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>*@
+    </td>
+</tr>
+<script>
+    $(document).ready(function () {
+       
+        $("select[id$='__EmployeeID']").select2();
+    });
+</script>

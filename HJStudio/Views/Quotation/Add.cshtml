@@ -11,23 +11,34 @@
     }
 }
 <style>
-    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto{
-        padding-right: 3px; 
-     padding-left: 3px; 
-         padding-top: 3px;
-             padding-bottom: 3px;
+    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
+        padding-right: 3px;
+        padding-left: 3px;
+        padding-top: 3px;
+        padding-bottom: 3px;
     }
-    .form-control{
-            height: 25px;
-            padding: .2rem 1rem;
+
+    .form-control {
+        height: 25px;
+        padding: .2rem 1rem;
     }
+
     .m-form .form-control-label.col-form-label, .m-form label.col-form-label {
-    padding-top: 0.55rem;
-}
+        padding-top: 0.55rem;
+    }
+
     .m-form .m-form__group {
-    margin-bottom: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
+        margin-bottom: 0;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .btn-sm, .btn-group-sm>.btn {
+    padding: 1px 7px 2px;
 }
 </style>
 <div class="m-content">
@@ -58,18 +69,18 @@
                         <div class="form-group m-form__group row">
                             <label class="col-md-2 col-form-label">Quotation Date :</label>
                             <div class="col-md-4">
-                                @Html.TextBoxFor(x => x.QuotationDate, "{0:dd/MM/yyyy}", new { @class = "form-control m-input" })
+                                @Html.TextBoxFor(x => x.QuotationDate, "{0:dd/MM/yyyy}", new { @class = "form-control m-input DatePicker" })
                                 @Html.ValidationMessageFor(x => x.QuotationDate, "", new { @class = "text-danger" })
 
                             </div>
                             <label class="col-md-2 col-form-label">Event Date :</label>
                             <div class="col-md-4">
-                                @Html.TextBoxFor(x => x.EventStartDate, "{0:dd/MM/yyyy}", new { @class = "form-control m-input" })
+                                @Html.TextBoxFor(x => x.EventStartDate, "{0:dd/MM/yyyy}", new { @class = "form-control m-input DatePicker" })
                                 @Html.ValidationMessageFor(x => x.EventStartDate, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
-                            <label class="col-md-2 col-form-label">User Type :</label>
+                            <label class="col-md-2 col-form-label">Existing Client :</label>
                             <div class="col-md-4">
                                 @Html.DropDownListFor(x => x.ClientID, ViewBag.Userlist as SelectList, "Select Existing Client", new { @class = "form-control Select2DropDown", })
                                 @Html.ValidationMessageFor(x => x.ClientID, "", new { @class = "text-danger" })
@@ -142,20 +153,42 @@
                         <div class="m-form__heading">
                             <h3 class="m-form__heading-title">Event Days Details <i data-toggle="m-tooltip" data-width="auto" class="m-form__heading-help-icon flaticon-info" title="" data-original-title="Add event days"></i></h3>
                         </div>
-                      
+
                     </div>
-                    <div class="m-portlet__foot m-portlet__foot--fit">
-                        <div class="m-form__actions">
-                            <div class="row">
-                                <div class="col-2">
-                                </div>
-                                <div class="col-10">
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <a href="~/Employee" class="btn btn-secondary">Cancel</a>
+                    <div class="m-separator m-separator--dashed m-sm-0"></div>
+                    <div class="m-form__section">
+                        <div class="m-form__heading">
+                            <h3 class="m-form__heading-title">Product Details </h3>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Amount</th>
+                                        <th>TotalAmount</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableProduct">
+                                    @Html.Partial("_AddProductList", Model)
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                        <div class="m-portlet__foot m-portlet__foot--fit">
+                            <div class="m-form__actions">
+                                <div class="row">
+                                    <div class="col-2">
+                                    </div>
+                                    <div class="col-10">
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <a href="~/Employee" class="btn btn-secondary">Cancel</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 }
             </div>
         </div>
@@ -164,6 +197,46 @@
 
 @section   Scripts{
     <script>
+        $(document).ready(function () {
+            $("#ClientID").select2();
+        });
+
+        $("#ClientID").change(function () {
+            var cid = $("#ClientID").val();
+            if (cid != "") {
+                mApp.blockPage();
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "/Quotation/GetClientData/",
+                    data: { ClientID: cid },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        $("#Name").val(data.Name);
+                        $("#Address1").val(data.Address1);
+                        $("#Address2").val(data.Address2);
+                        $("#City").val(data.City);
+                        $("#State").val(data.State);
+                        $("#MobileNo").val(data.MobileNo);
+                        $("#EmailId").val(data.EmailId);
+                        mApp.unblockPage();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        mApp.unblockPage();
+                    }
+                });
+            } else {
+                $("#Name").val("");
+                $("#Address1").val("");
+                $("#Address2").val("");
+                $("#City").val("");
+                $("#State").val("");
+                $("#MobileNo").val("");
+                $("#EmailId").val("");
+            }
+        });
+
         $("#EventDays").on("blur", function () {
             var days = parseInt($("#EventDays").val()) || 0;
             var existDays = (parseInt($(".DivEventDays").length));
@@ -192,5 +265,151 @@
                 }
             }
         });
+
+        $("#DivEventDays").on("click", "input[id$='__SameasAbove']", function () {
+            var id = this.id;
+            id = id.replace("QuotationDayList_", "").replace("__SameasAbove", "");
+            if (parseInt(id) > 0) {
+                var pid = (parseInt(id) - 1)
+                $("#QuotationDayList_" + id + "__Address1").val($("#QuotationDayList_" + pid + "__Address1").val());
+                $("#QuotationDayList_" + id + "__Address2").val($("#QuotationDayList_" + pid + "__Address2").val());
+                $("#QuotationDayList_" + id + "__City").val($("#QuotationDayList_" + pid + "__City").val());
+                $("#QuotationDayList_" + id + "__State").val($("#QuotationDayList_" + pid + "__State").val());
+                $("#QuotationDayList_" + id + "__ClientMobileNo").val($("#QuotationDayList_" + pid + "__ClientMobileNo").val());
+            } else {
+                $("#QuotationDayList_" + id + "__Address1").val($("#Address1").val());
+                $("#QuotationDayList_" + id + "__Address2").val($("#Address2").val());
+                $("#QuotationDayList_" + id + "__City").val($("#City").val());
+                $("#QuotationDayList_" + id + "__State").val($("#State").val());
+                $("#QuotationDayList_" + id + "__ClientMobileNo").val($("#MobileNo").val());
+            }
+        });
+
+        $("#DivEventDays").on("change", "select[id$='__EmployeeID']", function () {
+            var id = this.id;
+            var EId = $(this).val();
+            var Dayid = $(this).closest("tr").attr("data-Dayid");
+            var Empid = $(this).closest("tr").attr("data-Empid");
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "/Quotation/GetEmployeeData/",
+                data: { EmployeeID: EId },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var v = "";
+                    if ($("#QuotationDayList_" + Dayid + "__Daytype").val() == "Full Day") {
+                        v = data.DailyWages;
+                    } else {
+                        v = data.HalfDayWages;
+                    }
+                    $("#QuotationDayList_" + Dayid + "__EmployeeQuotationDayList_" + Empid + "__Wages").val(v);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+            var list = $("tr[id^='tr_" + Dayid + "_']");
+            var flag = true;
+            var DDid, EEid;
+            for (var i = 0; i < list.length; i++) {
+                var Did = $("#" + list[i].id).attr("data-Dayid");
+                var Eid = $("#" + list[i].id).attr("data-Empid");
+                var empDlt = $("#QuotationDayList_" + Did + "__EmployeeQuotationDayList_" + Eid + "__IsDelete").val();
+                if (String(empDlt).toLowerCase() == "false") {
+                    var EmId = $("#QuotationDayList_" + Did + "__EmployeeQuotationDayList_" + Eid + "__EmployeeID").val();
+                    var DDid = $("#" + list[i].id).attr("data-Dayid");
+                    var EEid = $("#" + list[i].id).attr("data-Empid");
+                    if (EmId == "") {
+                        flag = false;
+                    } else {
+                        flag = true;
+                    }
+                }
+            }
+            if (flag) {
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "/Quotation/AddEmployeeList/",
+                    data: { DayId: DDid, EmpId: EEid },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (data) {
+
+                        $("#Employee_" + Dayid).append(data);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                    }
+                });
+            }
+        });
+
+        function DeleteEmp($this) {
+            var Dayid = $($this).closest("tr").attr("data-Dayid");
+            var Empid = $($this).closest("tr").attr("data-Empid");
+            $("#QuotationDayList_" + Dayid + "__EmployeeQuotationDayList_" + Empid + "__IsDelete").val("true");
+            $("tr[id='tr_" + Dayid + "_" + Empid + "']").hide();
+        }
+        $("#tableProduct").on("change", "select[id$='__ProductID']", function () {
+            addProduct(this.id);
+        });
+
+        function addProduct($this) {
+            var id = String($this).replace("ProductQuotationList_", "").replace("__ProductID", "");
+            var Pid = $("#" + $this).val();
+            if (Pid != "") {
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "/Quotation/GetProductData/",
+                    data: { ProductID: Pid },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        $("#ProductQuotationList_" + id + "__Amount").val(data.Amount)
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+
+                    }
+                });
+            }
+            var list = $("#tableProduct tr");
+            var flag = true;
+            for (var i = 0; i < list.length; i++) {
+                var d = $("#ProductQuotationList_" + i + "__IsDelete").val();
+                if (String(d).toLowerCase() != "true") {
+                    if ($("#ProductQuotationList_" + i + "__ProductID").val() == "") {
+                        flag = false;
+                    } else {
+                        flag = true;
+                    }
+                }
+            }
+            if (flag) {
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "/Quotation/AddProductList/",
+                    data: { Id: list.length },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (data) {
+
+                        $("#tableProduct").append(data);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                    }
+                });
+            }
+
+        }
+
+        function DeleteProduct($this) {
+            var Productid = $($this).closest("tr").attr("data-Productid");
+            $("#ProductQuotationList_" + Productid + "__IsDelete").val("true");
+            $("tr[id='ProductTr_" + Productid + "']").hide();
+            addProduct("ProductQuotationList_" + Productid + "__ProductID");
+        }
     </script>
 }

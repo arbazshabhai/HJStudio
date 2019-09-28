@@ -87,6 +87,7 @@ namespace HJStudio.Models
         public double? Wages { get; set; }
         public string EmployeeRole { get; set; }
         public List<SelectListItem> EmployeeList { get; set; }
+        public bool IsDelete { get; set; }
     }
 
     public class ProductQuotationModel
@@ -98,5 +99,7 @@ namespace HJStudio.Models
         public double? Amount { get; set; }
         public double? TotalAmount { get; set; }
         public string Remark { get; set; }
+        public List<SelectListItem> ProductList { get; set; }
+        public bool IsDelete { get; set; }
     }
 }
