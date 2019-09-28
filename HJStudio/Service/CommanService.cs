@@ -9,13 +9,13 @@ namespace HJStudio.Service
 {
     public class CommanService
     {
-        public static List<int> clientIDList()
+        public static List<ClientModel> clientIDList()
         {
             try
             {
                 using (HJStudioEntities context = new HJStudioEntities())
                 {
-                    return context.ClientMasters.Select(x => x.ClientID).ToList();
+                    return context.ClientMasters.Select(x => new ClientModel { ClientID = x.ClientID, Name = x.Name } ).ToList();
                     
                 }
             }

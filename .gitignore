@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/HJStudio/Service/EnquiryService.cs
+/HJStudio/Models/EnquiryModel.cs
+/HJStudio/Views/Enquiry
+/HJStudio/Controllers/EnquiryController.cs
