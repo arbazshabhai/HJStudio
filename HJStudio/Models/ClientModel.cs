@@ -8,7 +8,7 @@ namespace HJStudio.Models
 {
     public class ClientModel
     {
-        public int ClientID { get; set; }
+        public int? ClientID { get; set; }
         [Required(ErrorMessage = "Name Required")]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only")]
         public string Name { get; set; }

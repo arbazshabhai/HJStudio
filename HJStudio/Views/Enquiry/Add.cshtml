@@ -32,9 +32,9 @@
                     <div class="m-portlet__body">
 
                         <div class="form-group m-form__group row">
-                            <label class="col-md-2 col-form-label">Select Client :</label>
+                            <label class="col-md-2 col-form-label">Select Existing Client :</label>
                             <div class="col-md-4">
-                                @Html.DropDownListFor(x => x.client.ClientID, ViewBag.ClientList as SelectList, "New Client", new { @class = "form-control Select2DropDown", onchange = "getData(this);" })
+                                @Html.DropDownListFor(x => x.client.ClientID, ViewBag.ClientList as SelectList, "Select", new { @class = "form-control Select2DropDown", onchange = "getData(this);" })
                                 
                                 @Html.HiddenFor(x => x.client.ClientID)
                             </div>

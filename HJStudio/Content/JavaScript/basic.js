@@ -57,6 +57,6 @@ function BeginFollowUp() {
 
 }
 function SuccessFollowUp() {
-    CalendarBasic();
     $('#modalinquirydollowup').modal('hide');
+    CalendarBasic();
 }
