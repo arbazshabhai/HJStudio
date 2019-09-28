@@ -34,5 +34,6 @@ namespace HJStudio.Data
         public virtual DbSet<ProductMaster> ProductMasters { get; set; }
         public virtual DbSet<ClientMaster> ClientMasters { get; set; }
         public virtual DbSet<FunctionDetail> FunctionDetails { get; set; }
+        public virtual DbSet<EnquiryFollowUp> EnquiryFollowUps { get; set; }
     }
 }

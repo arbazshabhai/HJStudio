@@ -72,6 +72,18 @@
           <Property Name="EmployeeID" Type="int" />
           <Property Name="Wages" Type="int" />
         </EntityType>
+        <EntityType Name="EnquiryFollowUp">
+          <Key>
+            <PropertyRef Name="EnquiryFollowupId" />
+          </Key>
+          <Property Name="EnquiryFollowupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EnquiryId" Type="int" />
+          <Property Name="Remarks" Type="varchar" MaxLength="500" />
+          <Property Name="NextFolowupDate" Type="datetime" />
+          <Property Name="EnquiryStatus" Type="int" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="FunctionDetail">
           <Key>
             <PropertyRef Name="Id" />
@@ -237,6 +249,7 @@
           <EntitySet Name="ClientMaster" EntityType="Self.ClientMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeMaster" EntityType="Self.EmployeeMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeQuotationDays" EntityType="Self.EmployeeQuotationDays" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnquiryFollowUp" EntityType="Self.EnquiryFollowUp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FunctionDetail" EntityType="Self.FunctionDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductQuotation" EntityType="Self.ProductQuotation" Schema="dbo" store:Type="Tables" />
@@ -427,6 +440,7 @@
             <End Role="ClientMaster" EntitySet="ClientMasters" />
             <End Role="FunctionDetail" EntitySet="FunctionDetails" />
           </AssociationSet>
+          <EntitySet Name="EnquiryFollowUps" EntityType="HJStudioModel.EnquiryFollowUp" />
         </EntityContainer>
         <EntityType Name="EmployeeMaster">
           <Key>
@@ -555,6 +569,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="EnquiryFollowUp">
+          <Key>
+            <PropertyRef Name="EnquiryFollowupId" />
+          </Key>
+          <Property Name="EnquiryFollowupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnquiryId" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NextFolowupDate" Type="DateTime" Precision="3" />
+          <Property Name="EnquiryStatus" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -710,6 +736,19 @@
                 <ScalarProperty Name="FunctionDescription" ColumnName="FunctionDescription" />
                 <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnquiryFollowUps">
+            <EntityTypeMapping TypeName="HJStudioModel.EnquiryFollowUp">
+              <MappingFragment StoreEntitySet="EnquiryFollowUp">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="EnquiryStatus" ColumnName="EnquiryStatus" />
+                <ScalarProperty Name="NextFolowupDate" ColumnName="NextFolowupDate" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="EnquiryId" ColumnName="EnquiryId" />
+                <ScalarProperty Name="EnquiryFollowupId" ColumnName="EnquiryFollowupId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

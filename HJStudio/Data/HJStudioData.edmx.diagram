@@ -21,6 +21,7 @@
         <AssociationConnector Association="HJStudioModel.FK_ClientMaster_QuotationMaster" />
         <EntityTypeShape EntityType="HJStudioModel.FunctionDetail" Width="1.5" PointX="3" PointY="8" />
         <AssociationConnector Association="HJStudioModel.FK_FunctionDetail_ClientMaster" />
+        <EntityTypeShape EntityType="HJStudioModel.EnquiryFollowUp" Width="1.5" PointX="5.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
