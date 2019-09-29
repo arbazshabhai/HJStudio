@@ -56,6 +56,7 @@ namespace HJStudio.Models
 
         public List<QuotationDayModel> QuotationDayList { get; set; }
         public List<ProductQuotationModel> ProductQuotationList { get; set; }
+        public string QuotationDateStr { get; set; }
     }
 
     public class QuotationDayModel

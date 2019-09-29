@@ -14,6 +14,12 @@ namespace HJStudio.Data
     
     public partial class QuotationDay
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public QuotationDay()
+        {
+            this.EmployeeQuotationDays = new HashSet<EmployeeQuotationDay>();
+        }
+    
         public int QuotationDaysID { get; set; }
         public Nullable<int> QuotationID { get; set; }
         public string EventName { get; set; }
@@ -26,5 +32,9 @@ namespace HJStudio.Data
         public string City { get; set; }
         public string State { get; set; }
         public string ClientMobileNo { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeQuotationDay> EmployeeQuotationDays { get; set; }
+        public virtual QuotationMaster QuotationMaster { get; set; }
     }
 }

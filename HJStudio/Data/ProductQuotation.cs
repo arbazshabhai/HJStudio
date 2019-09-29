@@ -21,5 +21,7 @@ namespace HJStudio.Data
         public Nullable<double> Amount { get; set; }
         public Nullable<double> TotalAmount { get; set; }
         public string Remark { get; set; }
+    
+        public virtual QuotationMaster QuotationMaster { get; set; }
     }
 }

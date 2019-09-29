@@ -14,6 +14,13 @@ namespace HJStudio.Data
     
     public partial class QuotationMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public QuotationMaster()
+        {
+            this.ProductQuotations = new HashSet<ProductQuotation>();
+            this.QuotationDays = new HashSet<QuotationDay>();
+        }
+    
         public int QuotationID { get; set; }
         public Nullable<System.DateTime> QuotationDate { get; set; }
         public Nullable<System.DateTime> EventStartDate { get; set; }
@@ -36,5 +43,10 @@ namespace HJStudio.Data
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> Status { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductQuotation> ProductQuotations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QuotationDay> QuotationDays { get; set; }
     }
 }

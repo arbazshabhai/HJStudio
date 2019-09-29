@@ -54,19 +54,19 @@ namespace HJStudio.Controllers
             return Json(EmployeeService.getEmployeebyId(EmployeeID), JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpPost]
-        //public ActionResult AddEdit(EmployeeModel model)
-        //{
-        //    //model.AddedBy = HttpContext.Session.GetString("UserName");
-        //    bool EmployeeStatus = EmployeeService.AddEmployee(model);
+        [HttpPost]
+        public ActionResult AddEdit(QuotationModel model)
+        {
+            //model.AddedBy = HttpContext.Session.GetString("UserName");
+            bool EmployeeStatus = QuotationService.AddQuotation(model);
 
-        //    if (EmployeeStatus)
-        //        TempData["Success"] = "Employee Added Successfully.";
-        //    else
-        //        TempData["Error"] = "Error, Please Try Again.";
+            if (EmployeeStatus)
+                TempData["Success"] = "Quotation Added Successfully.";
+            else
+                TempData["Error"] = "Error, Please Try Again.";
 
-        //    return RedirectToAction("Index");
-        //}
+            return RedirectToAction("Index");
+        }
 
         //public ActionResult Edit(int id)
         //{
