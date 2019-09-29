@@ -5,22 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="769a6034e5b04d9d925bb0db59c277c7" Name="Diagram1">
-        <EntityTypeShape EntityType="HJStudioModel.CalenderEvent" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HJStudioModel.EmployeeQuotationDay" Width="1.5" PointX="7.5" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HJStudioModel.ProductQuotation" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HJStudioModel.QuotationDay" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HJStudioModel.QuotationMaster" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
-        <AssociationConnector Association="HJStudioModel.FK_EmployeeQuotationDays_QuotationDays" ManuallyRouted="false" />
-        <AssociationConnector Association="HJStudioModel.FK_ProductQuotation_QuotationMaster" ManuallyRouted="false" />
-        <AssociationConnector Association="HJStudioModel.FK_QuotationDays_QuotationMaster" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="HJStudioModel.EmployeeMaster" Width="1.5" PointX="10.75" PointY="1.125" />
-        <EntityTypeShape EntityType="HJStudioModel.ProductMaster" Width="1.5" PointX="0.75" PointY="8" />
-        <AssociationConnector Association="HJStudioModel.FK_EmployeeQuotationDays_EmployeeMaster" />
-        <AssociationConnector Association="HJStudioModel.FK_ProductQuotation_ProductMaster" />
-        <EntityTypeShape EntityType="HJStudioModel.ClientMaster" Width="1.5" PointX="0.75" PointY="2.875" />
-        <AssociationConnector Association="HJStudioModel.FK_ClientMaster_QuotationMaster" />
-        <EntityTypeShape EntityType="HJStudioModel.FunctionDetail" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="HJStudioModel.CalenderEvent" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HJStudioModel.ClientMaster" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="HJStudioModel.EmployeeMaster" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HJStudioModel.EnquiryFollowUp" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="HJStudioModel.FunctionDetail" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="HJStudioModel.ProductMaster" Width="1.5" PointX="7.75" PointY="0.75" />
         <AssociationConnector Association="HJStudioModel.FK_FunctionDetail_ClientMaster" />
+        <EntityTypeShape EntityType="HJStudioModel.EmployeeQuotationDay" Width="1.5" PointX="7.875" PointY="13.25" />
+        <EntityTypeShape EntityType="HJStudioModel.ProductQuotation" Width="1.5" PointX="5.625" PointY="9.125" />
+        <EntityTypeShape EntityType="HJStudioModel.QuotationDay" Width="1.5" PointX="5.625" PointY="12.5" />
+        <EntityTypeShape EntityType="HJStudioModel.QuotationMaster" Width="1.5" PointX="3.375" PointY="9.875" />
+        <AssociationConnector Association="HJStudioModel.FK_EmployeeQuotationDays_QuotationDays" />
+        <AssociationConnector Association="HJStudioModel.FK_ProductQuotation_QuotationMaster" />
+        <AssociationConnector Association="HJStudioModel.FK_QuotationDays_QuotationMaster" />
         <EntityTypeShape EntityType="HJStudioModel.MenuMaster" Width="1.5" PointX="10.375" PointY="7.75" />
         <EntityTypeShape EntityType="HJStudioModel.MenuUserAllocation" Width="1.5" PointX="13" PointY="4.875" />
         <AssociationConnector Association="HJStudioModel.FK_MenuUserAllocation_EmployeeMaster" />

@@ -108,7 +108,6 @@ namespace HJStudio.Service
                         Search = Search.ToLower();
 
                         list = list.Where(x =>
-                        (x.ProductId != null ? x.ProductId.Equals(Search) : true) ||
                         (x.ProductName != null ? x.ProductName.ToLower().Contains(Search) : true) ||
                         (x.ProductDescription != null ? x.ProductDescription.ToLower().Contains(Search) : true) ||
                         (x.Amount != null ? x.Amount.Equals(Search) : true) 
@@ -153,6 +152,26 @@ namespace HJStudio.Service
             }
         }
 
+        public static List<ProductModel> getActiveProductList()
+        {
+            try
+            {
+                using (HJStudioEntities context = new HJStudioEntities())
+                {
+                    return context.ProductMasters.Select(x => new ProductModel
+                    {
+                        ProductId = x.ProductId,
+                        ProductName = x.ProductName,
+                        ProductDescription = x.ProductDescription,
+                        Amount = x.Amount,
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
         public static bool DeleteProduct(int id)
         {

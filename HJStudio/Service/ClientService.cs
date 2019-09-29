@@ -177,6 +177,34 @@ namespace HJStudio.Service
             }
         }
 
+        public static List<ClientModel> getActiveClientList()
+        {
+            try
+            {
+                using (HJStudioEntities context = new HJStudioEntities())
+                {
+                    return context.ClientMasters.Select(x => new ClientModel
+                    {
+                        ClientID = x.ClientID,
+                        Name = x.Name,
+                        Address1 = x.Address1,
+                        Address2 = x.Address2,
+                        City = x.City,
+                        State = x.State,
+                        EmailId = x.EmailId,
+                        MobileNo = x.MobileNo,
+                        CreatedBy = x.CreatedBy,
+                        ModifiedBy = x.ModifiedBy,
+                        Refrence = x.Refrence
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
 
         public static bool DeleteClient(int id)
         {

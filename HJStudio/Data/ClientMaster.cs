@@ -17,7 +17,6 @@ namespace HJStudio.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ClientMaster()
         {
-            this.QuotationMasters = new HashSet<QuotationMaster>();
             this.FunctionDetails = new HashSet<FunctionDetail>();
         }
     
@@ -35,8 +34,6 @@ namespace HJStudio.Data
         public string ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<QuotationMaster> QuotationMasters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FunctionDetail> FunctionDetails { get; set; }
     }

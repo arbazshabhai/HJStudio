@@ -26,11 +26,21 @@ namespace HJStudio.Data
         public Nullable<System.DateTime> EventStartDate { get; set; }
         public Nullable<int> EventDays { get; set; }
         public string Remark { get; set; }
-        public Nullable<long> QuotationAmount { get; set; }
+        public Nullable<double> QuotationAmount { get; set; }
+        public Nullable<double> Discount { get; set; }
+        public Nullable<double> FinalAmount { get; set; }
         public Nullable<int> ClientID { get; set; }
-        public string CreatedBy { get; set; }
+        public string Name { get; set; }
+        public string MobileNo { get; set; }
+        public string EmailId { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Refrence { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public string ModifiedBy { get; set; }
+        public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> Status { get; set; }
     
@@ -38,6 +48,5 @@ namespace HJStudio.Data
         public virtual ICollection<ProductQuotation> ProductQuotations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuotationDay> QuotationDays { get; set; }
-        public virtual ClientMaster ClientMaster { get; set; }
     }
 }

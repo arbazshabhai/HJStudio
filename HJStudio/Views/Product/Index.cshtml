@@ -51,7 +51,7 @@
             "processing": true,
             "orderMulti": false,
             "filter": true,
-            "sAjaxSource": "/Client/GetClientDetail",
+            "sAjaxSource": "/Product/GetProductDetail",
             //"iDisplayLength": 10,
             "ordering": true,
             "scrollX": true,
@@ -82,7 +82,7 @@
                 {
                     "sTitle": "Action", "className": "action", "orderable": false, render: function (data, type, row, meta) {
                         var srt
-                        srt = "<a href='/Product/Edit/" + row.ClientID + "' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Edit Client Detail'><i class='fa fa-pen'></i></a>"
+                        srt = "<a href='/Product/Edit/" + row.ProductId + "' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Edit Client Detail'><i class='fa fa-pen'></i></a>"
                         //if (row.statusId != 2)
                         //    srt += "&nbsp;<a href='javascript:;' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Confirm Booking' onclick='ApproveBooking\(" + row.eventBookingId + ")'\><i class='fa fa-check'></i></a>"
                         //if (row.statusId != 3)
@@ -99,8 +99,7 @@
                 },
                 {
                     "sTitle": "Description", "className": "", render: function (data, type, row, meta) {
-                        var name = "<strong style='text-transform: capitalize;'>" + row.ProductDescription + "</strong>";
-                        return name
+                        return row.ProductDescription
                     }
                 },
                 {

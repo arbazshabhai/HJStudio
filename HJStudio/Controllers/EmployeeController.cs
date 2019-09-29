@@ -67,7 +67,7 @@ namespace HJStudio.Controllers
         {
             EmployeeModel model = new EmployeeModel();
             model.ActionType = "Update";
-            model = EmployeeService.getEventbyId(id);
+            model = EmployeeService.getEmployeebyId(id);
 
             var UserList = (from UserType e in Enum.GetValues(typeof(UserType)) select new { Id = (int)e, Name = CommanModel.GetEnumDisplayName(e) });
             var wages = (from wagestype e in Enum.GetValues(typeof(wagestype)) select new { Id = (int)e, Name = e });

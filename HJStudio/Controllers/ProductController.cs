@@ -18,7 +18,8 @@ namespace HJStudio.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            ProductModel model = new ProductModel();
+            return View(model);
         }
 
         [HttpPost]

@@ -183,6 +183,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\QuotationController.cs" />
     <Compile Include="Data\CalenderEvent.cs">
       <DependentUpon>HJStudioData.tt</DependentUpon>
     </Compile>
@@ -249,6 +250,7 @@
     <Compile Include="Models\jQueryDataTableParamModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="Models\QuotationModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ClientService.cs" />
@@ -258,6 +260,7 @@
     <Compile Include="Service\ExpenseService.cs" />
     <Compile Include="Service\LoginService.cs" />
     <Compile Include="Service\MenuService.cs" />
+    <Compile Include="Service\QuotationService.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -506,6 +509,11 @@
     <Content Include="Views\Product\Add.cshtml" />
     <Content Include="Views\Enquiry\Index.cshtml" />
     <Content Include="Views\Enquiry\Add.cshtml" />
+    <Content Include="Views\Home\_AddEnquiryFollowUp.cshtml" />
+    <Content Include="Views\Quotation\Add.cshtml" />
+    <Content Include="Views\Quotation\_AddQuotationDays.cshtml" />
+    <Content Include="Views\Quotation\_AddEmployeeList.cshtml" />
+    <Content Include="Views\Quotation\_AddProductList.cshtml" />
     <Content Include="Views\Enquiry\_AddEnquiryFollowUp.cshtml" />
     <Content Include="Views\Menu\Add.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />

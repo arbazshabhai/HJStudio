@@ -10,9 +10,9 @@ namespace HJStudio.Models
     {
         public int ProductId { get; set; }
         [Required(ErrorMessage = "Product Name Required")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only")]
+        // [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only")]
         public string ProductName { get; set; }
-        [Required(ErrorMessage = "Product Description Required")]
+        //[Required(ErrorMessage = "Product Description Required")]
         public string ProductDescription { get; set; }
         [Required(ErrorMessage = "Product Amount Required")]
         public Nullable<double> Amount { get; set; }

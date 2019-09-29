@@ -14,12 +14,6 @@ namespace HJStudio.Data
     
     public partial class ProductMaster
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductMaster()
-        {
-            this.ProductQuotations = new HashSet<ProductQuotation>();
-        }
-    
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
@@ -28,8 +22,5 @@ namespace HJStudio.Data
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductQuotation> ProductQuotations { get; set; }
     }
 }

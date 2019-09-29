@@ -31,8 +31,8 @@ namespace HJStudio.Service
                     emp.DailyWages = model.DailyWages;
                     emp.HalfDayWages = model.HalfDayWages;
                     emp.MonthlyWages = model.MonthlyWages;
-                    
-                    if(temp == null)
+
+                    if (temp == null)
                     {
                         emp.CreatedBy = "Admin";
                         emp.CreatedDate = DateTime.Now;
@@ -48,7 +48,7 @@ namespace HJStudio.Service
                     context.SaveChanges();
                     return true;
                 }
-                
+
             }
             catch (Exception)
             {
@@ -82,7 +82,7 @@ namespace HJStudio.Service
                         ModifiedBy = x.ModifiedBy,
                         MonthlyWages = x.MonthlyWages,
                         cdate = x.CreatedDate != null ? x.CreatedDate.Value.ToString("dd-MM-yyyy") : "",
-                        mdate = x.ModifiedDate!= null ? x.ModifiedDate.Value.ToString("dd-MM-yyyy") : "",
+                        mdate = x.ModifiedDate != null ? x.ModifiedDate.Value.ToString("dd-MM-yyyy") : "",
                         Status = x.Status
                     }).ToList();
 
@@ -143,8 +143,8 @@ namespace HJStudio.Service
                         (x.State != null ? x.State.ToLower().Contains(Search) : true) ||
                         (x.EmailId != null ? x.EmailId.ToLower().Contains(Search) : true) ||
                         (x.MobileNo != null ? x.MobileNo.ToLower().Contains(Search) : true) ||
-                        (x.CreatedBy != null ? x.CreatedBy.ToLower().Contains(Search) : true) 
-                        
+                        (x.CreatedBy != null ? x.CreatedBy.ToLower().Contains(Search) : true)
+
                         //(x.UserType != null ? x.UserType == Search : true)
                         ).ToList();
                     }
@@ -163,7 +163,7 @@ namespace HJStudio.Service
             }
         }
 
-        public static EmployeeModel getEventbyId(int id)
+        public static EmployeeModel getEmployeebyId(int id)
         {
             try
             {
@@ -265,6 +265,40 @@ namespace HJStudio.Service
             catch (Exception ex)
             {
                 return false;
+            }
+        }
+
+        public static List<EmployeeModel> getEmployeeList()
+        {
+            try
+            {
+                using (HJStudioEntities context = new HJStudioEntities())
+                {
+                    return context.EmployeeMasters.Where(x => x.Status == 1).Select(x => new EmployeeModel
+                    {
+                        EmployeeID = x.EmployeeID,
+                        Name = x.Name,
+                        Address1 = x.Address1,
+                        Address2 = x.Address2,
+                        City = x.City,
+                        State = x.State,
+                        EmailId = x.EmailId,
+                        MobileNo = x.MobileNo,
+                        UserType = x.UserType,
+                        Password = x.Password,
+                        DailyWages = x.DailyWages,
+                        HalfDayWages = x.HalfDayWages,
+                        MonthlyWages = x.MonthlyWages,
+                        CreatedBy = x.CreatedBy,
+                        ModifiedBy = x.ModifiedBy,
+                        Status = x.Status
+
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }

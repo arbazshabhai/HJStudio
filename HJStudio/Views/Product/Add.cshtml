@@ -1,6 +1,13 @@
 ﻿@model HJStudio.Models.ProductModel
 @{
-    ViewBag.Title = "Add";
+    if (Model.ProductId > 0)
+    {
+        ViewBag.Title = "Edit Product";
+    }
+    else
+    {
+        ViewBag.Title = "Add Product";
+    }
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -50,7 +57,7 @@
                             </div>
 
                         </div>
-                        
+
                     </div>
 
                     <div class="m-portlet__foot m-portlet__foot--fit">

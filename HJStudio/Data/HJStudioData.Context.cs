@@ -26,6 +26,11 @@ namespace HJStudio.Data
         }
     
         public virtual DbSet<CalenderEvent> CalenderEvents { get; set; }
+        public virtual DbSet<ClientMaster> ClientMasters { get; set; }
+        public virtual DbSet<EmployeeMaster> EmployeeMasters { get; set; }
+        public virtual DbSet<EnquiryFollowUp> EnquiryFollowUps { get; set; }
+        public virtual DbSet<FunctionDetail> FunctionDetails { get; set; }
+        public virtual DbSet<ProductMaster> ProductMasters { get; set; }
         public virtual DbSet<EmployeeQuotationDay> EmployeeQuotationDays { get; set; }
         public virtual DbSet<ProductQuotation> ProductQuotations { get; set; }
         public virtual DbSet<QuotationDay> QuotationDays { get; set; }

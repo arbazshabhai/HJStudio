@@ -20,3 +20,18 @@ var BootstrapDatepicker = function () {
         }
     }
 }(); jQuery(document).ready(function () { BootstrapDatepicker.init() });
+
+$(document).ready(function () {
+    $(".DatePicker").datepicker({
+        todayHighlight: !0, orientation: "bottom left", format: "dd/mm/yyyy", autoclose: true
+    });
+    $(".Datetimepicker").datetimepicker({ todayHighlight: !0, autoclose: !0, format: "dd/mm/yyyy hh:ii" });
+
+    $(".Timepicker").timepicker({ defaultTime: "11:45:20 AM", minuteStep: 1, showSeconds: 0, showMeridian: !0 })
+
+    jQuery.validator.methods["date"] = function (value, element) { return true; }
+
+
+    $(".DatePicker, .Datetimepicker, .Timepicker").attr("autocomplete", "off");
+
+});

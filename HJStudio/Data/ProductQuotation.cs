@@ -18,10 +18,10 @@ namespace HJStudio.Data
         public Nullable<int> QuotationID { get; set; }
         public Nullable<int> ProductID { get; set; }
         public Nullable<int> Quantity { get; set; }
-        public Nullable<int> Amount { get; set; }
-        public Nullable<long> TotalAmount { get; set; }
+        public Nullable<double> Amount { get; set; }
+        public Nullable<double> TotalAmount { get; set; }
+        public string Remark { get; set; }
     
         public virtual QuotationMaster QuotationMaster { get; set; }
-        public virtual ProductMaster ProductMaster { get; set; }
     }
 }
