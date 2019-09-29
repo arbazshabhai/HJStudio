@@ -17,7 +17,6 @@ namespace HJStudio.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EmployeeMaster()
         {
-            this.EmployeeQuotationDays = new HashSet<EmployeeQuotationDay>();
             this.MenuUserAllocations = new HashSet<MenuUserAllocation>();
         }
     
@@ -42,8 +41,6 @@ namespace HJStudio.Data
         public Nullable<double> MonthlyWages { get; set; }
         public Nullable<int> WagesType { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeQuotationDay> EmployeeQuotationDays { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MenuUserAllocation> MenuUserAllocations { get; set; }
     }
