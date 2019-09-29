@@ -35,6 +35,30 @@ namespace HJStudio.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult GetEnquiryDetail(jQueryDataTableParamModel parm)
+        {
+            int startIndex = parm.iDisplayStart;
+            int endIndex = parm.iDisplayStart + parm.iDisplayLength;
+            int recordsTotal = 0;
+
+            List<EnquiryModel> list = EnquiryService.LoadEnquiryDetail(parm.sSearch, startIndex, endIndex, parm.iSortCol_0, parm.sSortDir_0, out recordsTotal);
+
+            return Json(new
+            {
+                Echo = parm.sEcho,
+                iTotalRecord = recordsTotal,
+                iTotalDisplayRecords = recordsTotal,
+                data = list
+            });
+        }
+
+        public ActionResult Edit(int id)
+        {
+
+            return View();
+        }
+
         public ActionResult GetDatabyClientID(int Id)
         {
             ClientModel model = new ClientModel();

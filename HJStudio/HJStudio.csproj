@@ -178,8 +178,10 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EnquiryController.cs" />
+    <Compile Include="Controllers\ExpenseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Data\CalenderEvent.cs">
       <DependentUpon>HJStudioData.tt</DependentUpon>
@@ -194,6 +196,9 @@
       <DependentUpon>HJStudioData.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\EnquiryFollowUp.cs">
+      <DependentUpon>HJStudioData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Expense.cs">
       <DependentUpon>HJStudioData.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\FunctionDetail.cs">
@@ -213,6 +218,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HJStudioData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MenuMaster.cs">
+      <DependentUpon>HJStudioData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MenuUserAllocation.cs">
+      <DependentUpon>HJStudioData.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\ProductMaster.cs">
       <DependentUpon>HJStudioData.tt</DependentUpon>
@@ -234,15 +245,19 @@
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\EnquiryFollowUpModel.cs" />
     <Compile Include="Models\EnquiryModel.cs" />
+    <Compile Include="Models\ExpenseModel.cs" />
     <Compile Include="Models\jQueryDataTableParamModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ClientService.cs" />
     <Compile Include="Service\CommanService.cs" />
     <Compile Include="Service\EmployeeService.cs" />
     <Compile Include="Service\EnquiryService.cs" />
+    <Compile Include="Service\ExpenseService.cs" />
     <Compile Include="Service\LoginService.cs" />
+    <Compile Include="Service\MenuService.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -251,6 +266,55 @@
     <Content Include="assets\demo\demo6\base\scripts.bundle.js" />
     <Content Include="assets\demo\demo6\base\style.bundle.css" />
     <Content Include="assets\demo\demo6\base\style.bundle.rtl.css" />
+    <Content Include="assets\jstree\dist\jstree.css" />
+    <Content Include="assets\jstree\dist\jstree.js" />
+    <Content Include="assets\jstree\dist\jstree.min.js" />
+    <Content Include="assets\jstree\dist\jstree1.css" />
+    <Content Include="assets\jstree\dist\jstree_old.js" />
+    <Content Include="assets\jstree\dist\libs\jquery.js" />
+    <Content Include="assets\jstree\dist\libs\jquery.ui.touch.js" />
+    <Content Include="assets\jstree\dist\libs\require.js" />
+    <Content Include="assets\jstree\dist\themes\default\32px.png" />
+    <Content Include="assets\jstree\dist\themes\default\32px_line.png" />
+    <Content Include="assets\jstree\dist\themes\default\32px_old.png" />
+    <Content Include="assets\jstree\dist\themes\default\32px_original.png" />
+    <Content Include="assets\jstree\dist\themes\default\40px.png" />
+    <Content Include="assets\jstree\dist\themes\default\style.css" />
+    <Content Include="assets\jstree\dist\themes\default\style.min.css" />
+    <Content Include="assets\jstree\dist\themes\default\throbber.gif" />
+    <Content Include="assets\jstree\docs\assets\ajax_nodes.html" />
+    <Content Include="assets\jstree\docs\assets\apple-touch-icon-precomposed.png" />
+    <Content Include="assets\jstree\docs\assets\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="assets\jstree\docs\assets\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="assets\jstree\docs\assets\bootstrap\css\bootstrap.css" />
+    <Content Include="assets\jstree\docs\assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\jstree\docs\assets\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\jstree\docs\assets\bootstrap\js\bootstrap.js" />
+    <Content Include="assets\jstree\docs\assets\bootstrap\js\bootstrap.min.js" />
+    <Content Include="assets\jstree\docs\assets\dist\jstree.js" />
+    <Content Include="assets\jstree\docs\assets\dist\jstree.min.js" />
+    <Content Include="assets\jstree\docs\assets\dist\libs\jquery.js" />
+    <Content Include="assets\jstree\docs\assets\dist\libs\jquery.ui.touch.js" />
+    <Content Include="assets\jstree\docs\assets\dist\libs\require.js" />
+    <Content Include="assets\jstree\docs\assets\dist\themes\default\32px.png" />
+    <Content Include="assets\jstree\docs\assets\dist\themes\default\40px.png" />
+    <Content Include="assets\jstree\docs\assets\dist\themes\default\style.css" />
+    <Content Include="assets\jstree\docs\assets\dist\themes\default\style.min.css" />
+    <Content Include="assets\jstree\docs\assets\dist\themes\default\throbber.gif" />
+    <Content Include="assets\jstree\docs\assets\docs.css" />
+    <Content Include="assets\jstree\docs\assets\docs.js" />
+    <Content Include="assets\jstree\docs\assets\favicon.ico" />
+    <Content Include="assets\jstree\docs\assets\html5.js" />
+    <Content Include="assets\jstree\docs\assets\images\browsers.png" />
+    <Content Include="assets\jstree\docs\assets\images\find.png" />
+    <Content Include="assets\jstree\docs\assets\images\logo.png" />
+    <Content Include="assets\jstree\docs\assets\images\tree.png" />
+    <Content Include="assets\jstree\docs\assets\images\tree_icon.png" />
+    <Content Include="assets\jstree\docs\assets\jquery-1.10.2.min.js" />
+    <Content Include="assets\jstree\docs\assets\jquery.address-1.6.js" />
+    <Content Include="assets\jstree\docs\assets\respond.js" />
+    <Content Include="assets\jstree\docs\assets\vakata.js" />
+    <Content Include="assets\jstree\docs\index.html" />
     <Content Include="assets\vendors\base\fonts\flaticon\Flaticon.svg" />
     <Content Include="assets\vendors\base\fonts\fontawesome5\fa-brands-400.svg" />
     <Content Include="assets\vendors\base\fonts\fontawesome5\fa-regular-400.svg" />
@@ -394,6 +458,17 @@
     <Content Include="assets\vendors\base\fonts\summernote\summernote.eot" />
     <Content Include="assets\vendors\base\fonts\summernote\summernote.ttf" />
     <Content Include="assets\vendors\base\fonts\summernote\summernote.woff" />
+    <Content Include="assets\jstree\docs\assets\ajax_children.json" />
+    <Content Include="assets\jstree\docs\assets\ajax_demo_children.json" />
+    <Content Include="assets\jstree\docs\assets\ajax_demo_roots.json" />
+    <Content Include="assets\jstree\docs\assets\ajax_roots.json" />
+    <Content Include="assets\jstree\docs\assets\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\jstree\docs\assets\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\jstree\docs\assets\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\jstree\docs\jstree.json" />
+    <Content Include="assets\jstree\jstree.jquery.json" />
+    <Content Include="assets\jstree\LICENSE-MIT" />
+    <Content Include="assets\jstree\README.md" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -432,6 +507,10 @@
     <Content Include="Views\Enquiry\Index.cshtml" />
     <Content Include="Views\Enquiry\Add.cshtml" />
     <Content Include="Views\Enquiry\_AddEnquiryFollowUp.cshtml" />
+    <Content Include="Views\Menu\Add.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Expense\Add.cshtml" />
+    <Content Include="Views\Expense\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

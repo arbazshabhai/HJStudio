@@ -1,0 +1,109 @@
+﻿@model HJStudio.Models.MenuModel
+@{
+    if (Model.UserId > 0)
+    {
+        ViewBag.Title = "Menu Edit";
+    }
+    else
+    {
+        ViewBag.Title = "Menu Add";
+    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+    <link href="/assets/jstree/dist/jstree.css" rel="stylesheet" />
+    <link href="/assets/jstree/dist/jstree1.css" rel="stylesheet" />
+}
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="row">
+        <div class="col-md-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+                                <i class="la la-gear"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                @ViewBag.Title
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!--begin::Form-->
+
+
+                @using (Html.BeginForm("Add", "Menu", FormMethod.Post, new { @id = "Form1", enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(x => x.UserId)
+                    @Html.HiddenFor(x => x.MenuList)
+
+                    <div class="m-portlet__body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <div id="usertree" class="marginBottom">
+                                        <div id="userroletree"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="m-portlet__foot m-portlet__foot--fit">
+                            <div class="m-form__actions m-form__actions">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button type="button" onclick="BtnSubmit()" class="btn btn-primary">Submit</button>
+                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                }
+
+                <!--end::Form-->
+            </div>
+
+            <!--end::Portlet-->
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="/assets/jstree/dist/jstree.js"></script>
+    <script>
+        var mockData1 = [];
+        var mockData = @Html.Raw(Json.Encode(ViewBag.MenuTreeModel));
+        $(document).ready(function(){
+            setTimeout(function(){
+                $('#userroletree').jstree({
+                    'core': {
+                        'data': mockData
+                    },
+                    "plugins": ['checkbox']
+                });
+                $("#userroletree").jstree("close_all", -1);
+            },2000);
+        });
+
+
+        function BtnSubmit(){
+            var selectedUserElems = [];
+            var selectedUserElems1 = $('#userroletree').jstree("get_selected", true);
+            $.each(selectedUserElems1, function () {
+                selectedUserElems.push(this.id);
+            });
+            $("#MenuList").val(selectedUserElems);
+            $("#Form1").submit();
+            //alert(selectedNode);
+        }
+    </script>
+}
+
+
+

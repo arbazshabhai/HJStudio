@@ -21,7 +21,13 @@
         <AssociationConnector Association="HJStudioModel.FK_ClientMaster_QuotationMaster" />
         <EntityTypeShape EntityType="HJStudioModel.FunctionDetail" Width="1.5" PointX="3" PointY="8" />
         <AssociationConnector Association="HJStudioModel.FK_FunctionDetail_ClientMaster" />
-        <EntityTypeShape EntityType="HJStudioModel.EnquiryFollowUp" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="HJStudioModel.MenuMaster" Width="1.5" PointX="10.375" PointY="7.75" />
+        <EntityTypeShape EntityType="HJStudioModel.MenuUserAllocation" Width="1.5" PointX="13" PointY="4.875" />
+        <AssociationConnector Association="HJStudioModel.FK_MenuUserAllocation_EmployeeMaster" />
+        <AssociationConnector Association="HJStudioModel.FK_MenuUserAllocation_MenuMaster" />
+        <EntityTypeShape EntityType="HJStudioModel.Expense" Width="1.5" PointX="7.375" PointY="10.75" />
+        <EntityTypeShape EntityType="HJStudioModel.EnquiryFollowUp" Width="1.5" PointX="5.25" PointY="15.625" />
+        <AssociationConnector Association="HJStudioModel.FK_EnquiryFollowUp_FunctionDetail" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

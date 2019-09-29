@@ -21,5 +21,7 @@ namespace HJStudio.Data
         public Nullable<int> EnquiryStatus { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
+    
+        public virtual FunctionDetail FunctionDetail { get; set; }
     }
 }

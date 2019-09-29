@@ -79,6 +79,7 @@ namespace HJStudio.Controllers
         }
         
 
+
         public ActionResult DeActiveEvent(int Id)
         {
             bool Status = EmployeeService.DeActivateEmployee(Id);

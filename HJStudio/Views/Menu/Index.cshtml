@@ -1,0 +1,113 @@
+﻿
+
+@{
+    ViewBag.Title = "Menu List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="m-content">
+    <div class="row">
+        <div class="col-md-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+                                <i class="la la-gear"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                @ViewBag.Title
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!--begin::Form-->
+                <div class="m-portlet__body">
+                    <!--begin: Datatable -->
+                    <table class="table table-striped- table-tracker table-hover" id="tblEvent"></table>
+                    <!--end: Datatable -->
+                </div>
+                <!--end::Form-->
+            </div>
+
+            <!--end::Portlet-->
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/assets/vendors/custom/datatables/datatables.bundle.js"></script>
+    <script>
+    var Table;
+    $(document).ready(function () {
+
+        Table = $('#tblEvent').DataTable({
+            "serverSide": true,
+            "processing": true,
+            "orderMulti": false,
+            "filter": true,
+            "sAjaxSource": "/Menu/GetMenuDetail",
+            //"iDisplayLength": 10,
+            "ordering": true,
+            "scrollX": true,
+            "responsive": true,
+            "language": {
+                "infoFiltered": ""
+            },
+            //"bSort": true,
+            //"aaSorting": [[1, 'asc'], [2, 'asc'], [3, 'asc']],
+            "columnDefs": [
+                { "orderable": false, "targets": 0 }
+            ],
+
+            "fnServerData": function (sSource, data, fnCallback) {
+               // data.push({ name: "Status", value: false });
+
+                $.ajax({
+                    "dataType": "json",
+                    "type": "POST",
+                    "url": sSource,
+                    "data": data,
+                    "success": fnCallback
+                });
+            },
+
+            "aoColumns": [
+                {
+                    "sTitle": "Action", "className": "action", "orderable": false, render: function (data, type, row, meta) {
+                        var srt
+                        srt = "<a href='/Menu/Add/" + row.UserId + "' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Edit Menu Detail'><i class='fa fa-edit'></i></a>"
+                        return srt;
+                    }
+                },
+                {
+                    "sTitle": "Name", "className": "", render: function (data, type, row, meta) {
+                        var name = "<strong style='text-transform: capitalize;'>" + row.UserName + "</strong>";
+                        return name
+                    },
+                },
+                {
+                    "sTitle": "Franchisee Name", "className": "", render: function (data, type, row, meta) {
+                        return row.FranchiseeName
+                    }
+                }
+            ],
+            "initComplete": function () {
+
+            }
+
+        });
+
+    });
+
+
+
+    </script>
+
+}
+
+

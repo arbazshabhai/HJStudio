@@ -14,6 +14,12 @@ namespace HJStudio.Data
     
     public partial class FunctionDetail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public FunctionDetail()
+        {
+            this.EnquiryFollowUps = new HashSet<EnquiryFollowUp>();
+        }
+    
         public int Id { get; set; }
         public string FunctionName { get; set; }
         public string FunctionDescription { get; set; }
@@ -29,5 +35,7 @@ namespace HJStudio.Data
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
         public virtual ClientMaster ClientMaster { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EnquiryFollowUp> EnquiryFollowUps { get; set; }
     }
 }

@@ -70,6 +70,13 @@ namespace HJStudio.Service
                         flt.ModifiedDate = DateTime.Now;
                         flt.ModifiedBy = "Admin";
                     }
+
+                    EnquiryFollowUp EF = new EnquiryFollowUp();
+                    EF.NextFolowupDate = model.FunctionDate;
+                    EF.EnquiryId = flt.Id;
+                    EF.CreatedDate = DateTime.Now;
+                    EF.CreatedBy = "Admin";
+                    EF.EnquiryStatus = 2;
                     context.SaveChanges();
 
                     return true;
@@ -83,43 +90,47 @@ namespace HJStudio.Service
             }
         }
 
-        public static List<ClientModel> LoadClientDetail(string Search, int startIndex, int endIndex, int sortColumnIndex, string sortDirection, out int Total)
+        public static List<EnquiryModel> LoadEnquiryDetail(string Search, int startIndex, int endIndex, int sortColumnIndex, string sortDirection, out int Total)
         {
             try
             {
                 using (HJStudioEntities context = new HJStudioEntities())
                 {
                     Total = 0;
-                    var list = context.ClientMasters.ToList().Select(x => new ClientModel
-                    {
-                        ClientID = x.ClientID,
-                        Name = x.Name,
-                        Address1 = x.Address1,
-                        Address2 = x.Address2,
-                        City = x.City,
-                        State = x.State,
-                        EmailId = x.EmailId,
-                        MobileNo = x.MobileNo,
-                        CreatedBy = x.CreatedBy,
-                        ModifiedBy = x.ModifiedBy,
-                        cdate = x.CreatedDate != null ? x.CreatedDate.Value.ToString("dd-MM-yyyy") : "",
-                        mdate = x.ModifiedDate != null ? x.ModifiedDate.Value.ToString("dd-MM-yyyy") : "",
-                        Refrence = x.Refrence
-                    }).ToList();
+                    var list = (from ED in context.FunctionDetails
+                               join CI in context.ClientMasters on ED.ClientId equals CI.ClientID
+                               select new { ED, CI }).ToList().Select(x => new EnquiryModel
+                               {
+                                   Id = x.ED.Id,
+                                   FunctionName = x.ED.FunctionName,
+                                   FunctionDescription = x.ED.FunctionDescription,
+                                   FunctionDate = x.ED.FunctionDate,
+                                   client = new ClientModel()
+                                   {
+                                       Name = x.CI.Name,
+                                       MobileNo = x.CI.MobileNo,
+                                       EmailId = x.CI.EmailId,
+                                       Refrence = x.CI.Refrence,
+                                       Address1 = x.CI.Refrence,
+                                       Address2 = x.CI.Refrence,
+                                       City = x.CI.City,
+                                       State = x.CI.State
 
+                                   }
+                               }).ToList();
                     if (sortColumnIndex > 0)
                     {
                         if (sortDirection == "desc")
                             switch (sortColumnIndex)
                             {
                                 case 1:
-                                    list = list.OrderByDescending(x => x.Name).ToList();
+                                    list = list.OrderByDescending(x => x.FunctionName).ToList();
                                     break;
                                 case 2:
-                                    list = list.OrderByDescending(x => x.EmailId).ToList();
+                                    list = list.OrderByDescending(x => x.client.Name).ToList();
                                     break;
                                 case 3:
-                                    list = list.OrderByDescending(x => x.MobileNo).ToList();
+                                    list = list.OrderByDescending(x => x.client.MobileNo).ToList();
                                     break;
                                 case 4:
                                     list = list.OrderByDescending(x => x.CreatedBy).ToList();
@@ -130,13 +141,13 @@ namespace HJStudio.Service
                             switch (sortColumnIndex)
                             {
                                 case 1:
-                                    list = list.OrderBy(x => x.Name).ToList();
+                                    list = list.OrderBy(x => x.FunctionName).ToList();
                                     break;
                                 case 2:
-                                    list = list.OrderBy(x => x.EmailId).ToList();
+                                    list = list.OrderBy(x => x.client.Name).ToList();
                                     break;
                                 case 3:
-                                    list = list.OrderBy(x => x.MobileNo).ToList();
+                                    list = list.OrderBy(x => x.client.MobileNo).ToList();
                                     break;
                                 case 4:
                                     list = list.OrderBy(x => x.CreatedBy).ToList();
@@ -145,7 +156,7 @@ namespace HJStudio.Service
                     }
                     else
                     {
-                        list = list.OrderByDescending(x => x.ClientID).ToList();
+                        list = list.OrderByDescending(x => x.Id).ToList();
                     }
 
                     if (!string.IsNullOrEmpty(Search))
@@ -153,11 +164,11 @@ namespace HJStudio.Service
                         Search = Search.ToLower();
 
                         list = list.Where(x =>
-                        (x.Name != null ? x.Name.Contains(Search) : true) ||
+                        (x.FunctionName != null ? x.FunctionName.Contains(Search) : true) ||
                         (x.City != null ? x.City.ToLower().Contains(Search) : true) ||
-                        (x.State != null ? x.State.ToLower().Contains(Search) : true) ||
-                        (x.EmailId != null ? x.EmailId.ToLower().Contains(Search) : true) ||
-                        (x.MobileNo != null ? x.MobileNo.ToLower().Contains(Search) : true) ||
+                        (x.client.Name != null ? x.client.Name.ToLower().Contains(Search) : true) ||
+                        (x.FunctionDate != null ? x.FunctionDate.ToString().Contains(Search) : true) ||
+                        (x.client.MobileNo != null ? x.client.MobileNo.ToLower().Contains(Search) : true) ||
                         (x.CreatedBy != null ? x.CreatedBy.ToLower().Contains(Search) : true)
 
                         //(x.UserType != null ? x.UserType == Search : true)
@@ -253,8 +264,8 @@ namespace HJStudio.Service
                         InquiryId = x.EnquiryId,
                         Remarks = x.Remarks,
                         NextFolowupDate = x.NextFolowupDate,
-                        //InquiryStatusString = Enum.GetName(typeof(Enquirytype), x.InquiryStatus),
-                       // CreatedBy = db.UserMasters.Where(y => y.UserId == x.CreatedBy).Select(z => z.FullName).FirstOrDefault(),
+                        InquiryStatusString = Enum.GetName(typeof(Enquirytype), x.EnquiryStatus),
+                        CreatedBy = x.CreatedBy,
                         CreatedDate = x.CreatedDate,
                     }).ToList();
                 }

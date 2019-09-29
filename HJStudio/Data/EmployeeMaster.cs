@@ -18,6 +18,7 @@ namespace HJStudio.Data
         public EmployeeMaster()
         {
             this.EmployeeQuotationDays = new HashSet<EmployeeQuotationDay>();
+            this.MenuUserAllocations = new HashSet<MenuUserAllocation>();
         }
     
         public int EmployeeID { get; set; }
@@ -43,5 +44,7 @@ namespace HJStudio.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeQuotationDay> EmployeeQuotationDays { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MenuUserAllocation> MenuUserAllocations { get; set; }
     }
 }

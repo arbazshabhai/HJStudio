@@ -84,6 +84,23 @@
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Expense">
+          <Key>
+            <PropertyRef Name="ExpenseID" />
+          </Key>
+          <Property Name="ExpenseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="EmpName" Type="varchar" MaxLength="150" />
+          <Property Name="IsBank" Type="bit" />
+          <Property Name="BankName" Type="varchar" MaxLength="500" />
+          <Property Name="ChequeNo" Type="varchar" MaxLength="50" />
+          <Property Name="IFSCCode" Type="varchar" MaxLength="50" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
+          <Property Name="Modifiedby" Type="varchar" MaxLength="100" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="FunctionDetail">
           <Key>
             <PropertyRef Name="Id" />
@@ -101,6 +118,28 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
           <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MenuMaster">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="MenuName" Type="varchar(max)" />
+          <Property Name="MenuLink" Type="varchar(max)" />
+          <Property Name="DisplayOrder" Type="float" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="IsForEmployee" Type="bit" />
+          <Property Name="MenuIcon" Type="varchar" MaxLength="150" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MenuUserAllocation">
+          <Key>
+            <PropertyRef Name="MenuUserAllocationId" />
+          </Key>
+          <Property Name="MenuUserAllocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuId" Type="int" />
+          <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="ProductMaster">
           <Key>
@@ -196,6 +235,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EnquiryFollowUp_FunctionDetail">
+          <End Role="FunctionDetail" Type="Self.FunctionDetail" Multiplicity="0..1" />
+          <End Role="EnquiryFollowUp" Type="Self.EnquiryFollowUp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FunctionDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EnquiryFollowUp">
+              <PropertyRef Name="EnquiryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FunctionDetail_ClientMaster">
           <End Role="ClientMaster" Type="Self.ClientMaster" Multiplicity="0..1" />
           <End Role="FunctionDetail" Type="Self.FunctionDetail" Multiplicity="*" />
@@ -205,6 +256,30 @@
             </Principal>
             <Dependent Role="FunctionDetail">
               <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuUserAllocation_EmployeeMaster">
+          <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="0..1" />
+          <End Role="MenuUserAllocation" Type="Self.MenuUserAllocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeMaster">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="MenuUserAllocation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuUserAllocation_MenuMaster">
+          <End Role="MenuMaster" Type="Self.MenuMaster" Multiplicity="0..1" />
+          <End Role="MenuUserAllocation" Type="Self.MenuUserAllocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuMaster">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="MenuUserAllocation">
+              <PropertyRef Name="MenuId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -250,7 +325,10 @@
           <EntitySet Name="EmployeeMaster" EntityType="Self.EmployeeMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeQuotationDays" EntityType="Self.EmployeeQuotationDays" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EnquiryFollowUp" EntityType="Self.EnquiryFollowUp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FunctionDetail" EntityType="Self.FunctionDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuMaster" EntityType="Self.MenuMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuUserAllocation" EntityType="Self.MenuUserAllocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductQuotation" EntityType="Self.ProductQuotation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuotationDays" EntityType="Self.QuotationDays" Schema="dbo" store:Type="Tables" />
@@ -267,9 +345,21 @@
             <End Role="QuotationDays" EntitySet="QuotationDays" />
             <End Role="EmployeeQuotationDays" EntitySet="EmployeeQuotationDays" />
           </AssociationSet>
+          <AssociationSet Name="FK_EnquiryFollowUp_FunctionDetail" Association="Self.FK_EnquiryFollowUp_FunctionDetail">
+            <End Role="FunctionDetail" EntitySet="FunctionDetail" />
+            <End Role="EnquiryFollowUp" EntitySet="EnquiryFollowUp" />
+          </AssociationSet>
           <AssociationSet Name="FK_FunctionDetail_ClientMaster" Association="Self.FK_FunctionDetail_ClientMaster">
             <End Role="ClientMaster" EntitySet="ClientMaster" />
             <End Role="FunctionDetail" EntitySet="FunctionDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuUserAllocation_EmployeeMaster" Association="Self.FK_MenuUserAllocation_EmployeeMaster">
+            <End Role="EmployeeMaster" EntitySet="EmployeeMaster" />
+            <End Role="MenuUserAllocation" EntitySet="MenuUserAllocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuUserAllocation_MenuMaster" Association="Self.FK_MenuUserAllocation_MenuMaster">
+            <End Role="MenuMaster" EntitySet="MenuMaster" />
+            <End Role="MenuUserAllocation" EntitySet="MenuUserAllocation" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductQuotation_ProductMaster" Association="Self.FK_ProductQuotation_ProductMaster">
             <End Role="ProductMaster" EntitySet="ProductMaster" />
@@ -440,7 +530,22 @@
             <End Role="ClientMaster" EntitySet="ClientMasters" />
             <End Role="FunctionDetail" EntitySet="FunctionDetails" />
           </AssociationSet>
+          <EntitySet Name="MenuMasters" EntityType="HJStudioModel.MenuMaster" />
+          <EntitySet Name="MenuUserAllocations" EntityType="HJStudioModel.MenuUserAllocation" />
+          <AssociationSet Name="FK_MenuUserAllocation_EmployeeMaster" Association="HJStudioModel.FK_MenuUserAllocation_EmployeeMaster">
+            <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
+            <End Role="MenuUserAllocation" EntitySet="MenuUserAllocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuUserAllocation_MenuMaster" Association="HJStudioModel.FK_MenuUserAllocation_MenuMaster">
+            <End Role="MenuMaster" EntitySet="MenuMasters" />
+            <End Role="MenuUserAllocation" EntitySet="MenuUserAllocations" />
+          </AssociationSet>
+          <EntitySet Name="Expenses" EntityType="HJStudioModel.Expense" />
           <EntitySet Name="EnquiryFollowUps" EntityType="HJStudioModel.EnquiryFollowUp" />
+          <AssociationSet Name="FK_EnquiryFollowUp_FunctionDetail" Association="HJStudioModel.FK_EnquiryFollowUp_FunctionDetail">
+            <End Role="FunctionDetail" EntitySet="FunctionDetails" />
+            <End Role="EnquiryFollowUp" EntitySet="EnquiryFollowUps" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="EmployeeMaster">
           <Key>
@@ -467,6 +572,7 @@
           <Property Name="MonthlyWages" Type="Double" />
           <Property Name="WagesType" Type="Int32" />
           <NavigationProperty Name="EmployeeQuotationDays" Relationship="HJStudioModel.FK_EmployeeQuotationDays_EmployeeMaster" FromRole="EmployeeMaster" ToRole="EmployeeQuotationDay" />
+          <NavigationProperty Name="MenuUserAllocations" Relationship="HJStudioModel.FK_MenuUserAllocation_EmployeeMaster" FromRole="EmployeeMaster" ToRole="MenuUserAllocation" />
         </EntityType>
         <EntityType Name="ProductMaster">
           <Key>
@@ -556,6 +662,7 @@
           <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ClientMaster" Relationship="HJStudioModel.FK_FunctionDetail_ClientMaster" FromRole="FunctionDetail" ToRole="ClientMaster" />
+          <NavigationProperty Name="EnquiryFollowUps" Relationship="HJStudioModel.FK_EnquiryFollowUp_FunctionDetail" FromRole="FunctionDetail" ToRole="EnquiryFollowUp" />
         </EntityType>
         <Association Name="FK_FunctionDetail_ClientMaster">
           <End Type="HJStudioModel.ClientMaster" Role="ClientMaster" Multiplicity="0..1" />
@@ -569,6 +676,72 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MenuMaster">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="MenuName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MenuLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayOrder" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsForEmployee" Type="Boolean" />
+          <Property Name="MenuIcon" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MenuUserAllocations" Relationship="HJStudioModel.FK_MenuUserAllocation_MenuMaster" FromRole="MenuMaster" ToRole="MenuUserAllocation" />
+        </EntityType>
+        <EntityType Name="MenuUserAllocation">
+          <Key>
+            <PropertyRef Name="MenuUserAllocationId" />
+          </Key>
+          <Property Name="MenuUserAllocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="EmployeeMaster" Relationship="HJStudioModel.FK_MenuUserAllocation_EmployeeMaster" FromRole="MenuUserAllocation" ToRole="EmployeeMaster" />
+          <NavigationProperty Name="MenuMaster" Relationship="HJStudioModel.FK_MenuUserAllocation_MenuMaster" FromRole="MenuUserAllocation" ToRole="MenuMaster" />
+        </EntityType>
+        <Association Name="FK_MenuUserAllocation_EmployeeMaster">
+          <End Type="HJStudioModel.EmployeeMaster" Role="EmployeeMaster" Multiplicity="0..1" />
+          <End Type="HJStudioModel.MenuUserAllocation" Role="MenuUserAllocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeMaster">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="MenuUserAllocation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuUserAllocation_MenuMaster">
+          <End Type="HJStudioModel.MenuMaster" Role="MenuMaster" Multiplicity="0..1" />
+          <End Type="HJStudioModel.MenuUserAllocation" Role="MenuUserAllocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuMaster">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="MenuUserAllocation">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Expense">
+          <Key>
+            <PropertyRef Name="ExpenseID" />
+          </Key>
+          <Property Name="ExpenseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EmpName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsBank" Type="Boolean" />
+          <Property Name="BankName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IFSCCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Modifiedby" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="EnquiryFollowUp">
           <Key>
             <PropertyRef Name="EnquiryFollowupId" />
@@ -580,7 +753,20 @@
           <Property Name="EnquiryStatus" Type="Int32" />
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="FunctionDetail" Relationship="HJStudioModel.FK_EnquiryFollowUp_FunctionDetail" FromRole="EnquiryFollowUp" ToRole="FunctionDetail" />
         </EntityType>
+        <Association Name="FK_EnquiryFollowUp_FunctionDetail">
+          <End Type="HJStudioModel.FunctionDetail" Role="FunctionDetail" Multiplicity="0..1" />
+          <End Type="HJStudioModel.EnquiryFollowUp" Role="EnquiryFollowUp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FunctionDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EnquiryFollowUp">
+              <PropertyRef Name="EnquiryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -736,6 +922,48 @@
                 <ScalarProperty Name="FunctionDescription" ColumnName="FunctionDescription" />
                 <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuMasters">
+            <EntityTypeMapping TypeName="HJStudioModel.MenuMaster">
+              <MappingFragment StoreEntitySet="MenuMaster">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+                <ScalarProperty Name="IsForEmployee" ColumnName="IsForEmployee" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="MenuLink" ColumnName="MenuLink" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuUserAllocations">
+            <EntityTypeMapping TypeName="HJStudioModel.MenuUserAllocation">
+              <MappingFragment StoreEntitySet="MenuUserAllocation">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="MenuUserAllocationId" ColumnName="MenuUserAllocationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expenses">
+            <EntityTypeMapping TypeName="HJStudioModel.Expense">
+              <MappingFragment StoreEntitySet="Expense">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Modifiedby" ColumnName="Modifiedby" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="IsBank" ColumnName="IsBank" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ExpenseID" ColumnName="ExpenseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
