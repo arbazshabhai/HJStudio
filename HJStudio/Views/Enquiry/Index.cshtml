@@ -64,6 +64,8 @@
             "columnDefs": [
                 { "orderable": false, "targets": 0 },
                 { "orderable": false, "targets": 4 },
+                { "orderable": false, "targets": 7 },
+                
             ],
 
             "fnServerData": function (sSource, data, fnCallback) {
@@ -82,30 +84,34 @@
                 {
                     "sTitle": "Action", "className": "action", "orderable": false, render: function (data, type, row, meta) {
                         var srt
-                        srt = "<a href='/Enquiry/Edit/" + row.ClientID + "' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Edit Client Detail'><i class='fa fa-pen'></i></a>"
-                        //if (row.statusId != 2)
-                        //    srt += "&nbsp;<a href='javascript:;' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Confirm Booking' onclick='ApproveBooking\(" + row.eventBookingId + ")'\><i class='fa fa-check'></i></a>"
-                        //if (row.statusId != 3)
-                        //    srt += "&nbsp;<a href='javascript:;' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-danger m-btn--icon' title='Reject Booking' onclick='RejectBooking\(" + row.eventBookingId + ")'\><i class='fa fa-times'></i></a>"
-
+                        srt = "<a href='/Enquiry/Edit/" + row.Id + "' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Edit Function Detail'><i class='fa fa-pen'></i></a>"
                         return srt;
                     }
                 },
                 {
-                    "sTitle": "Name", "className": "", render: function (data, type, row, meta) {
-                        var name = "<strong style='text-transform: capitalize;'>" + row.Name + "</strong>";
+                    "sTitle": "Function Name", "className": "", render: function (data, type, row, meta) {
+                        var name = "<strong style='text-transform: capitalize;'>" + row.FunctionName + "</strong>";
                         return name
                     },
                 },
                 {
-                    "sTitle": "Contact No", "className": "", render: function (data, type, row, meta) {
-                        var name = "<strong style='text-transform: capitalize;'>" + row.MobileNo + "</strong>";
-                        return name
+                    "sTitle": "Client Name", "className": "", render: function (data, type, row, meta) {
+                        return row.client.Name
                     }
                 },
                 {
-                    "sTitle": "Email-Id", "className": "", render: function (data, type, row, meta) {
-                        return row.EmailId
+                    "sTitle": "Function City", "className": "", render: function (data, type, row, meta) {
+                        return row.City
+                    }
+                },
+                {
+                    "sTitle": "Function State", "className": "", render: function (data, type, row, meta) {
+                        return row.State
+                    }
+                },
+                {
+                    "sTitle": "Mobile No", "className": "", render: function (data, type, row, meta) {
+                        return row.client.MobileNo
                     }
                 },
                 {
@@ -118,14 +124,10 @@
                         return row.State
                     }
                 },
-                {
-                    "sTitle": "Refereance Name", "className": "", render: function (data, type, row, meta) {
-                        return row.Refrence
-                    }
-                },
+                
                 {
                     "sTitle": "Created Date", "className": "", render: function (data, type, row, meta) {
-                        return row.cdate
+                        return "";
                     }
                 }
             ],

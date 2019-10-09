@@ -26,9 +26,7 @@ namespace HJStudio.Service
                     clt.Address2 = model.Address2;
                     clt.City = model.City;
                     clt.State = model.State;
-                    clt.Refrence = model.Refrence;
-                    
-                    
+                    clt.Refrence = model.Refrence;                                      
 
                     if (temp == null)
                     {
@@ -90,10 +88,10 @@ namespace HJStudio.Service
                                     list = list.OrderByDescending(x => x.EmailId).ToList();
                                     break;
                                 case 3:
-                                    list = list.OrderByDescending(x => x.MobileNo).ToList();
+                                    list = list.OrderByDescending(x => x.City).ToList();
                                     break;
                                 case 4:
-                                    list = list.OrderByDescending(x => x.CreatedBy).ToList();
+                                    list = list.OrderByDescending(x => x.State).ToList();
                                     break;
                             }
 
@@ -107,10 +105,10 @@ namespace HJStudio.Service
                                     list = list.OrderBy(x => x.EmailId).ToList();
                                     break;
                                 case 3:
-                                    list = list.OrderBy(x => x.MobileNo).ToList();
+                                    list = list.OrderBy(x => x.City).ToList();
                                     break;
                                 case 4:
-                                    list = list.OrderBy(x => x.CreatedBy).ToList();
+                                    list = list.OrderBy(x => x.State).ToList();
                                     break;
                             }
                     }
@@ -122,16 +120,13 @@ namespace HJStudio.Service
                     if (!string.IsNullOrEmpty(Search))
                     {
                         Search = Search.ToLower();
-
                         list = list.Where(x =>
                         (x.Name != null ? x.Name.Contains(Search) : true) ||
                         (x.City != null ? x.City.ToLower().Contains(Search) : true) ||
                         (x.State != null ? x.State.ToLower().Contains(Search) : true) ||
                         (x.EmailId != null ? x.EmailId.ToLower().Contains(Search) : true) ||
                         (x.MobileNo != null ? x.MobileNo.ToLower().Contains(Search) : true) ||
-                        (x.CreatedBy != null ? x.CreatedBy.ToLower().Contains(Search) : true)
-
-                        //(x.UserType != null ? x.UserType == Search : true)
+                        (x.cdate != null ? x.cdate.ToLower().Contains(Search) : true)
                         ).ToList();
                     }
                     Total = list != null ? list.Count() : 0;
@@ -204,7 +199,6 @@ namespace HJStudio.Service
                 return null;
             }
         }
-
 
         public static bool DeleteClient(int id)
         {

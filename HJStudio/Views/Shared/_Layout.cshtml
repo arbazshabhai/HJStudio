@@ -1,6 +1,7 @@
 ﻿@{
-    
+
     var userDetail = HJStudio.Models.CommanModel.LoginUserDetails;
+    var menu = HJStudio.Service.CommanService.LoginUserMenu;
 }
 <!DOCTYPE html>
 <html>
@@ -163,7 +164,7 @@
                 <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true" m-menu-scrollable="1" m-menu-dropdown-timeout="500">
                     <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
 
-                        @*@if (menu != null)
+                        @if (menu != null)
                         {
                             foreach (var item in menu)
                             {
@@ -195,7 +196,7 @@
                                 </li>
 
                             }
-                        }*@
+                        }
                     </ul>
                 </div>
 

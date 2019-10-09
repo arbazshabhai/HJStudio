@@ -18,6 +18,8 @@ namespace HJStudio.Controllers
 
         public ActionResult Add()
         {
+            var EmployeeList = CommanService.EmployeeNameList();
+            ViewBag.EmployeeList = new SelectList(EmployeeList, "EmployeeID", "Name");
             return View();
         }
 
@@ -37,7 +39,8 @@ namespace HJStudio.Controllers
         {
             ExpenseModel mdl = new ExpenseModel();
             mdl = ExpenseService.getExpensebyId(id);
-
+            var EmployeeList = CommanService.EmployeeNameList();
+            ViewBag.EmployeeList = new SelectList(EmployeeList, "EmployeeID", "Name");
             return View("Add",mdl);
         }
 
@@ -48,7 +51,8 @@ namespace HJStudio.Controllers
             int endIndex = parm.iDisplayStart + parm.iDisplayLength;
             int recordsTotal = 0;
 
-            List<EmployeeModel> list = EmployeeService.LoadEmpDetail(parm.sSearch, startIndex, endIndex, parm.iSortCol_0, parm.sSortDir_0, out recordsTotal);
+            //List<EmployeeModel> list = EmployeeService.LoadEmpDetail(parm.sSearch, startIndex, endIndex, parm.iSortCol_0, parm.sSortDir_0, out recordsTotal);
+            List<ExpenseModel> list = ExpenseService.LoadExpenceDetail(parm.sSearch, startIndex, endIndex, parm.iSortCol_0, parm.sSortDir_0, out recordsTotal);
 
             return Json(new
             {

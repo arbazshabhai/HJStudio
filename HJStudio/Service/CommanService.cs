@@ -24,6 +24,20 @@ namespace HJStudio.Service
                 return null;
             }
         }
+        public static List<EmployeeModel> EmployeeNameList()
+        {
+            try
+            {
+                using (HJStudioEntities context = new HJStudioEntities())
+                {
+                    return context.EmployeeMasters.Select(x => new EmployeeModel { EmployeeID=x.EmployeeID, Name = x.Name }).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         public static List<CalendarModel> GetCalanderFollowup()
         {
             try

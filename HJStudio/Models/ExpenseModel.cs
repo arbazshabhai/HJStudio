@@ -11,7 +11,8 @@ namespace HJStudio.Models
         public string EmpName { get; set; }
         public string Description { get; set; }
         public Nullable<double> Amount { get; set; }
-        public Nullable<bool> IsBank { get; set; }
+        public bool IsBank { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
         public string BankName { get; set; }
         public string ChequeNo { get; set; }
         public string IFSCCode { get; set; }

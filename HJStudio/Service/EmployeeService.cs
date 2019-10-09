@@ -31,7 +31,7 @@ namespace HJStudio.Service
                     emp.DailyWages = model.DailyWages;
                     emp.HalfDayWages = model.HalfDayWages;
                     emp.MonthlyWages = model.MonthlyWages;
-
+                    emp.WagesType = model.WagesType;
                     if (temp == null)
                     {
                         emp.CreatedBy = "Admin";
@@ -98,13 +98,10 @@ namespace HJStudio.Service
                                     list = list.OrderByDescending(x => x.EmailId).ToList();
                                     break;
                                 case 3:
-                                    list = list.OrderByDescending(x => x.MobileNo).ToList();
+                                    list = list.OrderByDescending(x => x.City).ToList();
                                     break;
                                 case 4:
-                                    list = list.OrderByDescending(x => x.UserType).ToList();
-                                    break;
-                                case 5:
-                                    list = list.OrderByDescending(x => x.CreatedBy).ToList();
+                                    list = list.OrderByDescending(x => x.State).ToList();
                                     break;
                             }
 
@@ -118,14 +115,12 @@ namespace HJStudio.Service
                                     list = list.OrderBy(x => x.EmailId).ToList();
                                     break;
                                 case 3:
-                                    list = list.OrderBy(x => x.MobileNo).ToList();
+                                    list = list.OrderBy(x => x.City).ToList();
                                     break;
                                 case 4:
-                                    list = list.OrderBy(x => x.UserType).ToList();
+                                    list = list.OrderBy(x => x.State).ToList();
                                     break;
-                                case 5:
-                                    list = list.OrderBy(x => x.CreatedBy).ToList();
-                                    break;
+                                
                             }
                     }
                     else
@@ -143,9 +138,7 @@ namespace HJStudio.Service
                         (x.State != null ? x.State.ToLower().Contains(Search) : true) ||
                         (x.EmailId != null ? x.EmailId.ToLower().Contains(Search) : true) ||
                         (x.MobileNo != null ? x.MobileNo.ToLower().Contains(Search) : true) ||
-                        (x.CreatedBy != null ? x.CreatedBy.ToLower().Contains(Search) : true)
-
-                        //(x.UserType != null ? x.UserType == Search : true)
+                        (x.cdate != null ? x.cdate.ToLower().Contains(Search) : true)
                         ).ToList();
                     }
                     Total = list != null ? list.Count() : 0;
@@ -186,6 +179,7 @@ namespace HJStudio.Service
                         MonthlyWages = x.MonthlyWages,
                         CreatedBy = x.CreatedBy,
                         ModifiedBy = x.ModifiedBy,
+                        WagesType = x.WagesType,
                         //cdate = x.CreatedDate != null ? x.CreatedDate.Value.ToString("dd-MM-yyyy") : "",
                         //mdate = x.ModifiedDate != null ? x.ModifiedDate.Value.ToString("dd-MM-yyyy") : "",
                         Status = x.Status

@@ -63,7 +63,10 @@
             //"aaSorting": [[1, 'asc'], [2, 'asc'], [3, 'asc']],
             "columnDefs": [
                 { "orderable": false, "targets": 0 },
-                { "orderable": false, "targets": 4 },
+                { "orderable": false, "targets": 2 },
+                { "orderable": false, "targets": 6 },
+                { "orderable": false, "targets": 7 },
+                { "orderable": false, "targets": 8 },
             ],
 
             "fnServerData": function (sSource, data, fnCallback) {
@@ -83,11 +86,6 @@
                     "sTitle": "Action", "className": "action", "orderable": false, render: function (data, type, row, meta) {
                         var srt
                         srt = "<a href='/Employee/Edit/" + row.EmployeeID + "' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Edit Employee Detail'><i class='fa fa-pen'></i></a>"
-                        //if (row.statusId != 2)
-                        //    srt += "&nbsp;<a href='javascript:;' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Confirm Booking' onclick='ApproveBooking\(" + row.eventBookingId + ")'\><i class='fa fa-check'></i></a>"
-                        //if (row.statusId != 3)
-                        //    srt += "&nbsp;<a href='javascript:;' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-danger m-btn--icon' title='Reject Booking' onclick='RejectBooking\(" + row.eventBookingId + ")'\><i class='fa fa-times'></i></a>"
-
                         return srt;
                     }
                 },
@@ -132,19 +130,8 @@
                     "sTitle": "Created Date", "className": "", render: function (data, type, row, meta) {
                         return row.cdate
                     }
-                },
-                {
-                    "sTitle": "Status", "className": "", render: function (data, type, row, meta) {
-                        if (row.Status == 1) {
-                            return '<span class="m-badge m-badge--info m-badge--wide">Pending</span>'
-                        } else if (row.Status == 2) {
-                            return '<span class="m-badge m-badge--info m-badge--wide">Confirmed</span>'
-                        } else if (row.Status == 3) {
-                            return '<span class="m-badge m-badge--info m-badge--wide">Rejected</span>'
-                        }
-                        return row.txtWorkerType
-                    }
                 }
+                
             ],
             "initComplete": function () {
 

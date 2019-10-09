@@ -63,7 +63,8 @@
             //"aaSorting": [[1, 'asc'], [2, 'asc'], [3, 'asc']],
             "columnDefs": [
                 { "orderable": false, "targets": 0 },
-                { "orderable": false, "targets": 4 },
+                { "orderable": false, "targets": 3 },
+                { "orderable": false, "targets": 5 },
             ],
 
             "fnServerData": function (sSource, data, fnCallback) {
@@ -82,15 +83,9 @@
                 {
                     "sTitle": "Action", "className": "action", "orderable": false, render: function (data, type, row, meta) {
                         var srt
-                        srt = "<a href='/Expense/AddEdit/" + row.ExpenseID + "' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Edit Employee Detail'><i class='fa fa-pen'></i></a>"
+                        srt = "<a href='/Expense/Edit/" + row.ExpenseID + "' class='m-portlet__nav-link btn btn-sm m-btn btn-primary m-btn--hover-accent m-btn--icon' title='Edit Employee Detail'><i class='fa fa-pen'></i></a>"
                         return srt;
                     }
-                },
-                {
-                    "sTitle": "Description", "className": "", render: function (data, type, row, meta) {
-                        var name = "<strong style='text-transform: capitalize;'>" + row.Description + "</strong>";
-                        return name
-                    },
                 },
                 {
                     "sTitle": "Employyee Name", "className": "", render: function (data, type, row, meta) {
@@ -98,6 +93,12 @@
                         return name
                     }
                 },
+                {
+                    "sTitle": "Description", "className": "", render: function (data, type, row, meta) {
+                        var name = "<strong style='text-transform: capitalize;'>" + row.Description + "</strong>";
+                        return name
+                    },
+                },               
                 {
                     "sTitle": "Amount", "className": "", render: function (data, type, row, meta) {
                         return row.Amount
@@ -109,18 +110,13 @@
                     }
                 },
                 {
+                    "sTitle": "Cheque No", "className": "", render: function (data, type, row, meta) {
+                        return row.ChequeNo
+                    }
+                },
+                {
                     "sTitle": "Created Date", "className": "", render: function (data, type, row, meta) {
                         return row.cdate
-                    }
-                },
-                {
-                    "sTitle": "Created By", "className": "", render: function (data, type, row, meta) {
-                        return row.CreatedBy
-                    }
-                },
-                {
-                    "sTitle": "Modified By", "className": "", render: function (data, type, row, meta) {
-                        return row.Modifiedby
                     }
                 }
                 

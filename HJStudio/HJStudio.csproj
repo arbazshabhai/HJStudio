@@ -184,60 +184,6 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\QuotationController.cs" />
-    <Compile Include="Data\CalenderEvent.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\ClientMaster.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\EmployeeMaster.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\EmployeeQuotationDay.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\EnquiryFollowUp.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Expense.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\FunctionDetail.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\HJStudioData.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HJStudioData.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\HJStudioData.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\HJStudioData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HJStudioData.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Data\MenuMaster.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\MenuUserAllocation.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\ProductMaster.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\ProductQuotation.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\QuotationDay.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\QuotationMaster.cs">
-      <DependentUpon>HJStudioData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -370,16 +316,6 @@
     <Content Include="Content\StyleSheet\datatables.bundle.rtl.css" />
     <Content Include="Content\StyleSheet\style.bundle.css" />
     <Content Include="Content\StyleSheet\vendors.bundle.css" />
-    <Content Include="Data\HJStudioData.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HJStudioData.edmx</DependentUpon>
-      <LastGenOutput>HJStudioData.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Data\HJStudioData.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HJStudioData.edmx</DependentUpon>
-      <LastGenOutput>HJStudioData.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Content\StyleSheet\fonts\flaticon\Flaticon.svg" />
     <Content Include="Content\StyleSheet\fonts\fontawesome5\fa-brands-400.svg" />
@@ -425,13 +361,6 @@
     <Content Include="Content\StyleSheet\fonts\summernote\summernote.eot" />
     <Content Include="Content\StyleSheet\fonts\summernote\summernote.ttf" />
     <Content Include="Content\StyleSheet\fonts\summernote\summernote.woff" />
-    <EntityDeploy Include="Data\HJStudioData.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HJStudioData.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Data\HJStudioData.edmx.diagram">
-      <DependentUpon>HJStudioData.edmx</DependentUpon>
-    </Content>
     <Content Include="assets\vendors\base\fonts\flaticon\Flaticon.eot" />
     <Content Include="assets\vendors\base\fonts\flaticon\Flaticon.ttf" />
     <Content Include="assets\vendors\base\fonts\flaticon\Flaticon.woff" />

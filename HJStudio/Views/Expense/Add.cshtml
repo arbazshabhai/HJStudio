@@ -28,35 +28,57 @@
                 @using (Html.BeginForm("AddEdit", "Expense", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-form m-form--fit m-form--label-align-right" }))
                 {
                     @Html.HiddenFor(x => x.ExpenseID)
-                    <div class="m-portlet__body">
+                <div class="m-portlet__body">
 
-                        <div class="form-group m-form__group row">
-                            <label class="col-md-2 col-form-label">Expense Type :</label>
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(x => x.ExpenseType, new { @class = "form-control m-input" })
-                                @Html.ValidationMessageFor(x => x.ExpenseType, "", new { @class = "text-danger" })
+                    <div class="form-group m-form__group row">
+                        <label class="col-md-2 col-form-label">Employee Name :</label>
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(x => x.EmployeeID, ViewBag.EmployeeList as SelectList, "Select", new { @class = "form-control Select2DropDown", onchange = "getData(this);" })
+                            @Html.ValidationMessageFor(x => x.EmployeeID, "", new { @class = "text-danger" })
 
-                            </div>
-                            <label class="col-md-2 col-form-label">Total Amount :</label>
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(x => x.Amount, new { @class = "form-control m-input" })
-                                @Html.ValidationMessageFor(x => x.Amount, "", new { @class = "text-danger" })
-                            </div>
                         </div>
-                        @*<div class="form-group m-form__group row">
-                            <label class="col-md-2 col-form-label">User Type :</label>
-                            <div class="col-md-4">
-                                @Html.DropDownListFor(x => x.UserType, ViewBag.Userlist as SelectList, "Select User Type", new { @class = "form-control Select2DropDown", })
-                                @Html.ValidationMessageFor(x => x.UserType, "", new { @class = "text-danger" })
-                            </div>
-                            <label class="col-md-2 col-form-label">Email-Id :</label>
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(x => x.EmailId, new { @class = "form-control m-input" })
-                                @Html.ValidationMessageFor(x => x.EmailId, "", new { @class = "text-danger" })
-                            </div>
-
-                        </div>*@
+                        <label class="col-md-2 col-form-label">Description :</label>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.Description, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+                        </div>
                     </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-md-2 col-form-label">Expense Type :</label>
+                        <div class="col-md-4">
+                            @Html.CheckBoxFor(x => x.IsBank, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.IsBank, "", new { @class = "text-danger" })
+
+                        </div>
+                        <label class="col-md-2 col-form-label">Total Amount :</label>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.Amount, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.Amount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row BankDetail" style="display:none;">
+                        <label class="col-md-2 col-form-label">Bank Name :</label>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.BankName, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.BankName, "", new { @class = "text-danger" })
+
+                        </div>
+                        <label class="col-md-2 col-form-label">Cheque No :</label>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.ChequeNo, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.ChequeNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row BankDetail" style="display:none;">
+                        <label class="col-md-2 col-form-label">IFSC CODE :</label>
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(x => x.IFSCCode, new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(x => x.IFSCCode, "", new { @class = "text-danger" })
+
+                        </div>
+                        
+                    </div>
+                </div>
 
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions">
@@ -77,3 +99,21 @@
 </div>
 
 
+<script>
+    $("#IsBank").click(function () {
+        if ($(this).prop("checked") == true) {
+            $(".BankDetail").show();
+        }
+        else {
+            $(".BankDetail").hide();
+        }
+    });
+    $(document).ready(function () {
+        if ($("#IsBank").prop("checked") == true) {
+            $(".BankDetail").show();
+        }
+        else {
+            $(".BankDetail").hide();
+        }
+    });
+</script>

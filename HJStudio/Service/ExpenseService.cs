@@ -20,10 +20,11 @@ namespace HJStudio.Service
                     exp = temp == null ? new Expense() : temp;
 
                     exp.Description = model.Description;
-                    exp.EmpName = model.EmpName;
+                    exp.EmployeeID = model.EmployeeID;
                     exp.BankName = model.BankName;
                     exp.IsBank = model.IsBank;
                     exp.IFSCCode = model.IFSCCode;
+                    exp.ChequeNo = model.ChequeNo;
                     exp.Amount = model.Amount;
 
                     if (temp == null)
@@ -56,14 +57,19 @@ namespace HJStudio.Service
                 using (HJStudioEntities context = new HJStudioEntities())
                 {
                     Total = 0;
-                    var list = context.Expenses.ToList().Select(x => new ExpenseModel
+                    var list = (from E in context.Expenses
+                                join Emp in context.EmployeeMasters on E.EmployeeID equals Emp.EmployeeID
+                                select new {E, Emp }).ToList().Select(x => new ExpenseModel
                     {
-                        Description = x.Description,
-                        EmpName = x.EmpName,
-                        BankName = x.BankName,
-                        Amount = x.Amount,
-                        CreatedBy = x.CreatedBy,
-                        cdate = x.CreatedDate != null ? x.CreatedDate.Value.ToString("dd-MM-yyyy") : "",
+                        ExpenseID = x.E.ExpenseID,
+                        Description = x.E.Description,
+                        EmpName = x.Emp.Name,
+                        BankName = x.E.BankName,
+                        Amount = x.E.Amount,
+                        ChequeNo = x.E.ChequeNo,
+                        IFSCCode = x.E.IFSCCode,
+                        CreatedBy = x.E.CreatedBy,
+                        cdate = x.E.CreatedDate != null ? x.E.CreatedDate.Value.ToString("dd-MM-yyyy") : "",
                         
                     }).ToList();
 
@@ -73,13 +79,13 @@ namespace HJStudio.Service
                             switch (sortColumnIndex)
                             {
                                 case 1:
-                                    list = list.OrderByDescending(x => x.Description).ToList();
+                                    list = list.OrderByDescending(x => x.EmpName).ToList();
                                     break;
                                 case 2:
-                                    list = list.OrderByDescending(x => x.Amount).ToList();
+                                    list = list.OrderByDescending(x => x.Description).ToList();
                                     break;
                                 case 3:
-                                    list = list.OrderByDescending(x => x.EmpName).ToList();
+                                    list = list.OrderByDescending(x => x.BankName).ToList();
                                     break;
                             }
 
@@ -87,13 +93,13 @@ namespace HJStudio.Service
                             switch (sortColumnIndex)
                             {
                                 case 1:
-                                    list = list.OrderBy(x => x.Description).ToList();
+                                    list = list.OrderBy(x => x.EmpName).ToList();
                                     break;
                                 case 2:
-                                    list = list.OrderBy(x => x.Amount).ToList();
+                                    list = list.OrderBy(x => x.Description).ToList();
                                     break;
                                 case 3:
-                                    list = list.OrderBy(x => x.EmpName).ToList();
+                                    list = list.OrderBy(x => x.BankName).ToList();
                                     break;
 
                             }
@@ -140,9 +146,10 @@ namespace HJStudio.Service
                     return context.Expenses.Where(x => x.ExpenseID == id).Select(x => new ExpenseModel
                     {
                         Description = x.Description,
-                        EmpName = x.EmpName,
+                        EmployeeID = x.EmployeeID,
                         BankName = x.BankName,
-                        IsBank = x.IsBank,
+                        IsBank = x.IsBank??false,
+                        ChequeNo = x.ChequeNo,
                         IFSCCode = x.IFSCCode, 
                         Amount = x.Amount,
                         CreatedBy = x.CreatedBy

@@ -105,6 +105,8 @@ namespace HJStudio.Service
                                    FunctionName = x.ED.FunctionName,
                                    FunctionDescription = x.ED.FunctionDescription,
                                    FunctionDate = x.ED.FunctionDate,
+                                   City = x.ED.City,
+                                   State = x.ED.State,
                                    client = new ClientModel()
                                    {
                                        Name = x.CI.Name,
@@ -130,10 +132,10 @@ namespace HJStudio.Service
                                     list = list.OrderByDescending(x => x.client.Name).ToList();
                                     break;
                                 case 3:
-                                    list = list.OrderByDescending(x => x.client.MobileNo).ToList();
+                                    list = list.OrderByDescending(x => x.City).ToList();
                                     break;
                                 case 4:
-                                    list = list.OrderByDescending(x => x.CreatedBy).ToList();
+                                    list = list.OrderByDescending(x => x.State).ToList();
                                     break;
                             }
 
@@ -147,10 +149,10 @@ namespace HJStudio.Service
                                     list = list.OrderBy(x => x.client.Name).ToList();
                                     break;
                                 case 3:
-                                    list = list.OrderBy(x => x.client.MobileNo).ToList();
+                                    list = list.OrderBy(x => x.City).ToList();
                                     break;
                                 case 4:
-                                    list = list.OrderBy(x => x.CreatedBy).ToList();
+                                    list = list.OrderBy(x => x.State).ToList();
                                     break;
                             }
                     }
@@ -167,9 +169,9 @@ namespace HJStudio.Service
                         (x.FunctionName != null ? x.FunctionName.Contains(Search) : true) ||
                         (x.City != null ? x.City.ToLower().Contains(Search) : true) ||
                         (x.client.Name != null ? x.client.Name.ToLower().Contains(Search) : true) ||
-                        (x.FunctionDate != null ? x.FunctionDate.ToString().Contains(Search) : true) ||
-                        (x.client.MobileNo != null ? x.client.MobileNo.ToLower().Contains(Search) : true) ||
-                        (x.CreatedBy != null ? x.CreatedBy.ToLower().Contains(Search) : true)
+                       // (x.FunctionDate != null ? x.FunctionDate.ToString().Contains(Search) : true) ||
+                        (x.client.MobileNo != null ? x.client.MobileNo.ToLower().Contains(Search) : true) 
+                       // (x.CreatedBy != null ? x.CreatedBy.ToLower().Contains(Search) : true)
 
                         //(x.UserType != null ? x.UserType == Search : true)
                         ).ToList();
@@ -203,6 +205,8 @@ namespace HJStudio.Service
                           FunctionName = x.ED.FunctionName,
                           FunctionDescription = x.ED.FunctionDescription,
                           FunctionDate = x.ED.FunctionDate,
+                          City = x.ED.City,
+                          State = x.ED.State,
                           client = new ClientModel()
                           {
                               Name = x.CI.Name,

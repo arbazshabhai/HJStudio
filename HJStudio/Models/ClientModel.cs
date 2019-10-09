@@ -10,7 +10,7 @@ namespace HJStudio.Models
     {
         public int? ClientID { get; set; }
         [Required(ErrorMessage = "Name Required")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only")]
+        [RegularExpression(@"^[a-zA-Z_ ]+$", ErrorMessage = "Use letters only")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Mobile No Required")]
         [StringLength(10, ErrorMessage = "Mobile No must be 10 number", MinimumLength = 10)]
@@ -24,12 +24,12 @@ namespace HJStudio.Models
         [Required(ErrorMessage = "Address2 Required")]
         public string Address2 { get; set; }
         [Required(ErrorMessage = "City Required")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only")]
+        [RegularExpression(@"^[a-zA-Z_ ]+$", ErrorMessage = "Use letters only")]
         public string City { get; set; }
         [Required(ErrorMessage = "State Required")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only")]
+        [RegularExpression(@"^[a-zA-Z_ ]+$", ErrorMessage = "Use letters only")]
         public string State { get; set; }
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only")]
+        [RegularExpression(@"^[a-zA-Z_ ]+$", ErrorMessage = "Use letters only")]
         public string Refrence { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
